@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Anillo del tile de canal. strokeWidth no admite lista de estados, así que el
+     grosor es fijo (1 dp) y lo que cambia es el color.
+
+     En reposo el borde es el NEGRO medido en el sitio (#000202 en el perfil de
+     píxeles del borde del tile); al activarse pasa al azul de acento. Antes el
+     reposo era un filete azulado casi invisible y el activo, cian. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/pelis_accent" android:state_activated="true" />
+    <item android:color="@color/pelis_accent" android:state_pressed="true" />
+    <!-- v9.7 (TV): con mando no hay dedo que señale. El tile enfocado se marca con
+         el blanco de tinta, que sobre el teal es el contraste más alto disponible
+         sin cambiar el grosor del filete (strokeWidth no admite estados). -->
+    <item android:color="@color/pelis_text" android:state_focused="true" />
+    <item android:color="@color/pelis_tile_edge" />
+</selector>

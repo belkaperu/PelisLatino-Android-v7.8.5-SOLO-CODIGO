@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tile de canal, formato DramaLive: cuadrado, logo centrado sobre losa, nombre
+     en banda oscura pegada al borde inferior y anillo cian cuando está activo.
+     El anillo lo pone el estilo (strokeColor = lista de estados sobre
+     android:stateActivated), que es lo que manipula CanalAdapter. -->
+<!-- v3.2.32 — DRAMA+; la losa, el avatar de iniciales y las columnas gordas viven en
+     CanalAdapter/Logos/CanalesEnVivoFragment. Este layout solo quito tinte y padding. -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Blabongo.Tile"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- v3.2.32: sin tinte (teñía los logos de blanco). v3.2.33: FITCENTER con aire —
+             el usuario: «las imagenes estan pasando el limite, deben verse bien». centerCrop
+             recortaba los banners anchos (logos cortados por los costados). DramaLive real
+             muestra el logo ENTERO respirando dentro de la losa; el marco lo da el gradiente. -->
+        <ImageView
+            android:id="@+id/imgCanal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_tile_losa"
+            android:contentDescription="@null"
+            android:padding="@dimen/canal_logo_pad"
+            android:scaleType="fitCenter"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- v3.2.43: corazon de favorito en la losa (tira de Drama con ♥ Favoritos). -->
+        <TextView
+            android:id="@+id/btnFavCanal"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="@dimen/space_1_5"
+            android:background="@drawable/bg_pelis_year"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="♡"
+            android:textColor="@color/pelis_text_secondary"
+            android:textSize="15sp"
+            android:contentDescription="@string/canales_fav_dentro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtNombreCanal"
+            style="@style/Widget.Blabongo.TileName"
+            app:layout_constraintBottom_toBottomOf="@id/imgCanal"
+            app:layout_constraintEnd_toEndOf="@id/imgCanal"
+            app:layout_constraintStart_toStartOf="@id/imgCanal"
+            tools:text="Directv Sports" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

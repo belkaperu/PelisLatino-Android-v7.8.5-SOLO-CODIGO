@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fondo de la intro: el mismo degradado teal de la app con dos halos, uno del
+     azul de acento y otro del rojo del sitio. Antes: negro con halos azul y
+     rojo sobre violeta. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/bg_wallpaper" />
+    <item>
+        <shape android:shape="rectangle">
+            <gradient android:type="radial" android:gradientRadius="260dp"
+                android:centerX="18%" android:centerY="14%"
+                android:startColor="#4D2196F3" android:endColor="#002196F3" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient android:type="radial" android:gradientRadius="220dp"
+                android:centerX="88%" android:centerY="88%"
+                android:startColor="#33E70013" android:endColor="#00E70013" />
+        </shape>
+    </item>
+</layer-list>

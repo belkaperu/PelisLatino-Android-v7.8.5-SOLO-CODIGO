@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Panel del circulo (v3.2.53, como la captura del Drama real): buscador arriba y
+     REJILLA de 4 columnas de celdas, no una lista. El filtrado del buscador es del
+     panel; la rejilla de canales tiene su propio buscador en la barra. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_pelis_sheet"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/space_2"
+    android:paddingTop="@dimen/space_2"
+    android:paddingEnd="@dimen/space_2"
+    android:paddingBottom="@dimen/space_3">
+
+    <EditText
+        android:id="@+id/editPanelCategorias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_pelis_search"
+        android:drawableStart="@drawable/ic_pelis_search"
+        android:drawablePadding="@dimen/space_2"
+        android:hint="@string/canales_buscar_hint"
+        android:imeOptions="actionSearch"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:maxLines="1"
+        android:padding="@dimen/space_2"
+        android:textColor="@color/pelis_text"
+        android:textColorHint="@color/pelis_text_secondary"
+        android:textSize="14sp"
+        tools:ignore="LabelFor" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_1"
+        android:maxHeight="440dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/contenedorPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="UselessParent" />
+    </ScrollView>
+</LinearLayout>

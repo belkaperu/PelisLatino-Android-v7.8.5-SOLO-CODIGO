@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- El botón "Todos" de la tira, calcado del Drama Live real: un ANILLO blanco
+     con un punto en el centro, sin rótulo debajo (capturas ddd.JPG y
+     drama-01.png, donde es el primer elemento de la tira, antes de Favourites).
+
+     Dos círculos de dos arcos cada uno. Los arcos van con sus 7 parámetros
+     (rx,ry rot large-arc sweep dx,dy) y con radio holgado: un arco de radio 0 o
+     sin las banderas correctas es lo que hizo cerrar la app en la v9 (ver
+     RecursosLayoutTest.losVectoresTienenPathDataValido).
+
+     El color real lo pone el tint de Widget.Blabongo.TabIcon (pelis_tab_icon),
+     igual que el resto de los iconos de la tira. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Anillo: radio 9 alrededor de (12,12). -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M3,12 a9,9 0 1,0 18,0 a9,9 0 1,0 -18,0"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="1.8" />
+
+    <!-- Punto central: radio 2.5. -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M9.5,12 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0" />
+</vector>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ══ Espaciado (múltiplos de 4) ══ -->
+    <dimen name="space_0_5">2dp</dimen>
+    <dimen name="space_1">4dp</dimen>
+    <dimen name="space_1_5">8dp</dimen>
+    <dimen name="space_2">12dp</dimen>
+    <dimen name="space_3">16dp</dimen>
+    <dimen name="space_4">24dp</dimen>
+    <dimen name="space_5">32dp</dimen>
+
+    <!-- ══ Radios ══
+         Medidos sobre web.dramalive.cc: el tile de canal tiene ~15 dp de radio
+         (arco de 90 px en la captura a 3x = 6x tras ampliar), la tarjeta de
+         categoría ~14 dp y el campo de búsqueda es una PASTILLA completa
+         (radio = mitad de la altura, 26 px sobre 52 px de alto). Antes de esta
+         pasada el campo iba a 10 dp y el tile a 14 dp: el tile ya estaba bien. -->
+    <dimen name="radius_badge">4dp</dimen>
+    <dimen name="radius_field">12dp</dimen>
+    <dimen name="radius_pill">25dp</dimen>
+    <dimen name="radius_button">10dp</dimen>
+    <dimen name="radius_card">12dp</dimen>
+    <dimen name="radius_poster">12dp</dimen>
+    <dimen name="radius_tile">15dp</dimen>
+    <dimen name="radius_sheet">16dp</dimen>
+    <dimen name="radius_chip">12dp</dimen>
+
+    <!-- ══ Tipografía (Poppins, ver res/font/poppins.xml) ══ -->
+    <dimen name="text_display">22sp</dimen>
+    <dimen name="text_title">18sp</dimen>
+    <dimen name="text_subtitle">15sp</dimen>
+    <dimen name="text_body">14sp</dimen>
+    <dimen name="text_caption">12sp</dimen>
+    <dimen name="text_micro">11sp</dimen>
+    <dimen name="text_badge">11sp</dimen>
+
+    <!-- ══ Controles ══ -->
+    <dimen name="chip_height">34dp</dimen>
+    <dimen name="chip_min_width">68dp</dimen>
+    <dimen name="field_height">46dp</dimen>
+    <!-- La barra del sitio mide 56 px de alto con una pastilla de búsqueda de 36;
+         proporcionalmente, 56 dp de barra y 44 dp de pastilla. -->
+    <dimen name="appbar_height">56dp</dimen>
+    <dimen name="search_height">44dp</dimen>
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="touch_min">44dp</dimen>
+    <dimen name="icon_sm">18dp</dimen>
+    <dimen name="icon_md">20dp</dimen>
+    <dimen name="icon_lg">24dp</dimen>
+    <dimen name="stroke_hair">1dp</dimen>
+    <dimen name="stroke_ring">1dp</dimen>
+    <dimen name="stroke_accent">3dp</dimen>
+
+    <!-- ══ Catálogo de pelis ══ -->
+    <dimen name="poster_height">216dp</dimen>
+    <dimen name="card_margin">5dp</dimen>
+    <dimen name="grid_gutter">8dp</dimen>
+    <dimen name="card_elevation">3dp</dimen>
+    <dimen name="card_elevation_flat">0dp</dimen>
+
+    <!-- ══ Canales ══
+         Valores de las capturas del Drama Live real (cat-sports, cur-00,
+         nav-rt, m-00): la rejilla es de 3 columnas de tiles CUADRADOS con el
+         nombre DENTRO, en una banda inferior. Es lo mismo que hace la web.
+
+         Ojo: en el APK que se analizó existe `item_live_list` (una fila con
+         logo de 100 dp + nombre al lado) y por eso la v9.2 pasó los canales a
+         filas. Fue un error: esa pantalla no es la que la app pinta. Las
+         capturas del cliente real lo desmienten. -->
+    <dimen name="canal_grid_pad">16dp</dimen>
+    <!-- El margen lo pone CADA tile, o sea que el hueco entre dos vecinos es el
+         doble: 4.5 dp para que salgan los 9 dp medidos en la web. -->
+    <dimen name="canal_tile_gutter">4.5dp</dimen>
+    <dimen name="canal_logo_pad">12dp</dimen>
+    <dimen name="canal_name_h">22dp</dimen>
+
+    <!-- Tira de categorías: cuadro de icono de ~56 dp con el rótulo DEBAJO,
+         fuera del cuadro (nav-rt: el bloque azul de "Most watched" mide
+         ~67x55 dp y el rótulo queda por debajo, sobre el fondo). -->
+    <dimen name="canal_tab_h">78dp</dimen>
+    <dimen name="canal_tab_icon">52dp</dimen>
+    <dimen name="canal_tab_gap">6dp</dimen>
+
+    <!-- ══ Detalle ══ -->
+    <dimen name="backdrop_height">228dp</dimen>
+    <dimen name="poster_detail_width">110dp</dimen>
+    <dimen name="poster_detail_height">165dp</dimen>
+    <dimen name="poster_detail_overlap">52dp</dimen>
+    <dimen name="poster_detail_overlap_neg">-52dp</dimen>
+
+    <!-- ══ Reproductor ══ -->
+    <dimen name="seekbar_height">3dp</dimen>
+    <dimen name="seekbar_thumb">14dp</dimen>
+
+    <!-- ══ Navegación / intro ══ -->
+    <dimen name="nav_header_height">164dp</dimen>
+    <dimen name="nav_header_logo">60dp</dimen>
+    <dimen name="intro_dots">10dp</dimen>
+    <dimen name="intro_art">164dp</dimen>
+    <dimen name="sheet_handle_width">36dp</dimen>
+    <dimen name="sheet_handle_height">4dp</dimen>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Losa del tile: un BRILLO diagonal muy tenue.
+
+     El relleno de vidrio lo pone ahora la propia MaterialCardView
+     (cardBackgroundColor = pelis_tile_bg en Widget.Blabongo.Tile), porque en el
+     sitio el tile es translúcido y deja pasar el confeti del fondo. Esta capa
+     solo añade el reflejo de la esquina, que es lo que separa un tile "de
+     vidrio" de un rectángulo plano. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient
+        android:angle="315"
+        android:startColor="#1AFFFFFF"
+        android:centerColor="#08FFFFFF"
+        android:endColor="#00000000" />
+</shape>

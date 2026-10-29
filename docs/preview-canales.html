@@ -1,0 +1,176 @@
+<!doctype html>
+<!--
+  Maqueta de la pantalla de Canales (estilo v8/v9). Sin red ni assets externos: CSS y SVG
+  en línea, para que se pueda abrir del repo directamente (o ver en el preview del editor).
+  No es código de la app; es la referencia visual de los tokens reales de res/values.
+-->
+<meta charset="utf-8">
+<title>BLABONGO · Canales (v9) — maqueta</title>
+<style>
+  :root{
+    --bg:#0D0F14; --bg-dark:#07080C; --surface:#14171E; --card:#1A1E27; --card-high:#232837;
+    --border:#2E3444; --border-soft:#222834;
+    --primary:#3EA7FF; --accent:#42D1FF; --accent-soft:#2A6E8C; --cyan-tint:#1A42D1FF; --ink:#06121B;
+    --text:#F3F5FA; --text-2:#B7C0D0; --muted:#8B94A6; --disabled:#5B6373;
+    --live:#FF4757; --red:#E23B45;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:32px 20px 72px;background:#05070A;color:var(--text);
+       font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  h1{font-size:15px;font-weight:600;letter-spacing:.02em;margin:0 0 4px}
+  p.sub{margin:0 0 26px;color:var(--muted);font-size:12px}
+  .row{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start}
+  .cap{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 8px;font-weight:500}
+  .phone{width:340px;background:var(--bg);border:1px solid var(--border);border-radius:26px;
+         overflow:hidden;box-shadow:0 24px 60px -28px #000}
+  .bar{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;
+       background:var(--bg-dark);font-size:11px;color:var(--text-2)}
+  .head{padding:14px 16px 12px;background:radial-gradient(240px 120px at 12% 0%,#263EA7FF,transparent 70%),var(--bg-dark)}
+  .hrow{display:flex;align-items:center;gap:8px}
+  .title{font-size:18px;font-weight:600;flex:1}
+  .cnt{font-size:11px;color:var(--muted);margin-top:3px}
+  .live{font-size:10px;font-weight:700;letter-spacing:.06em;color:#fff;background:var(--live);
+        padding:3px 6px;border-radius:4px}
+  .ib{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--surface);
+      display:grid;place-items:center;color:var(--text-2);font-size:14px}
+  .ib.on{border-color:var(--accent);color:var(--accent)}
+  .field{display:flex;align-items:center;gap:8px;margin-top:12px;height:46px;padding:0 6px 0 10px;
+         background:var(--surface);border:1px solid var(--border);border-radius:10px}
+  .field input{flex:1;background:none;border:0;outline:0;color:var(--text);font:inherit;font-size:14px}
+  .field svg{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2}
+  .tabs{display:flex;gap:4px;padding:10px 8px 6px;overflow:hidden}
+  .tab{flex:0 0 auto;min-width:70px;height:58px;border-radius:10px;border:1px solid var(--border);
+       background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;
+       gap:3px;padding:0 10px;font-size:10px;color:var(--muted)}
+  .tab svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7}
+  .tab.on{border-color:var(--accent);color:var(--accent);background:var(--cyan-tint);box-shadow:inset 0 0 0 1px var(--accent)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px}
+  .tile{position:relative;aspect-ratio:1;border-radius:8px;background:var(--card);border:2px solid var(--border-soft);
+        display:grid;place-items:center;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--text-2);overflow:hidden}
+  .tile.sel{border-color:var(--accent);box-shadow:0 0 16px -6px var(--accent)}
+  .tile .nm{position:absolute;left:0;right:0;bottom:0;height:26px;display:flex;align-items:center;padding:0 6px;
+            font-size:10px;font-weight:500;letter-spacing:0;color:var(--text);white-space:nowrap;overflow:hidden;
+            background:linear-gradient(180deg,#06070Bcc,#06070Bf2)}
+  .tile.empty{border-style:dashed;color:var(--disabled);font-weight:500}
+  .sheet{background:var(--surface);border-top:1px solid var(--border);padding:14px 20px 20px}
+  .handle{width:36px;height:4px;border-radius:2px;background:var(--border);margin:0 auto 14px}
+  .stitle{font-size:16px;font-weight:600}
+  .ssub{font-size:12px;color:var(--text-2);margin-top:6px;line-height:1.5}
+  .switchrow{display:flex;align-items:center;gap:12px;margin-top:14px}
+  .switchrow div{flex:1}
+  .switchrow b{display:block;font-size:14px;font-weight:600}
+  .switchrow small{display:block;font-size:11px;color:var(--muted);margin-top:2px;line-height:1.45}
+  .sw{width:42px;height:24px;border-radius:12px;background:var(--accent);position:relative;flex:0 0 auto}
+  .sw::after{content:"";position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:50%;background:var(--ink)}
+  .sw.off{background:var(--border)}
+  .sw.off::after{right:auto;left:3px;background:var(--muted)}
+  label.chk{display:flex;gap:8px;align-items:flex-start;font-size:11px;color:var(--muted);margin-top:10px}
+  label.chk i{width:16px;height:16px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);
+              flex:0 0 auto;display:grid;place-items:center;font-style:normal;font-size:11px;color:var(--ink)}
+  label.chk.off i{background:none;color:transparent}
+  .state{font-size:11px;color:var(--accent);margin-top:10px}
+  .state.warn{color:var(--live)}
+  .hair{height:1px;background:var(--border);margin:16px 0}
+  .lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:12px 0 6px;font-weight:500}
+  .inp{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 12px;
+       font-size:13px;color:var(--text);font-family:ui-monospace,Menlo,monospace}
+  .inp.hint{color:var(--muted);font-family:inherit}
+  .btns{display:flex;gap:8px;margin-top:14px}
+  .cta{flex:1;height:44px;border-radius:8px;display:grid;place-items:center;font-size:14px;font-weight:700;
+       color:var(--ink);background:linear-gradient(0deg,var(--primary),var(--accent))}
+  .ghost{height:44px;padding:0 14px;border-radius:8px;display:grid;place-items:center;font-size:13px;
+         color:var(--accent);border:1px solid var(--accent-soft)}
+  .note{font-size:12px;color:var(--muted);line-height:1.6;margin:10px 2px 0}
+  .opt{display:flex;align-items:center;gap:10px;padding:12px 16px;border-top:1px solid var(--border-soft);font-size:14px}
+  .opt .ic{width:26px;height:26px;border-radius:13px;border:1px solid var(--accent-soft);display:grid;place-items:center;
+           font-size:12px;color:var(--accent)}
+  .opt .q{margin-left:auto;font-size:10px;color:var(--muted);letter-spacing:.06em}
+</style>
+
+<h1>BLABONGO · Canales — v9 (componentes DramaLive + carga automática)</h1>
+<p class="sub">Tokens tomados de <code>app/src/main/res/values/{colors,dimens,styles}.xml</code>. Si no tienes Poppins instalado, esto cae a la fuente del sistema; en la app va empaquetada en <code>res/font/</code>.</p>
+
+<div class="row">
+  <div>
+    <p class="cap">rejilla · 3 columnas, anillo de selección</p>
+    <div class="phone">
+      <div class="bar"><span>9:41</span><span>▮▮ ⚡</span></div>
+      <div class="head">
+        <div class="hrow">
+          <div style="flex:1">
+            <div class="title">Canales deportivos</div>
+            <div class="cnt">Deportes (lista de la app) · 214 canales</div>
+          </div>
+          <span class="live">EN VIVO</span>
+          <span class="ib">⟳</span><span class="ib on">＋</span>
+        </div>
+        <div class="field">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input placeholder="Buscar canales…" value="espn">
+          <span style="color:var(--muted)">✕</span>
+        </div>
+      </div>
+      <div class="tabs">
+        <div class="tab on"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2v20"/></svg>Todos</div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg>Fútbol</div>
+        <div class="tab"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8"/></svg>TV</div>
+        <div class="tab"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>General</div>
+      </div>
+      <div class="grid">
+        <div class="tile sel">ESPN<div class="nm">ESPN</div></div>
+        <div class="tile">ESPN2<div class="nm">ESPN 2</div></div>
+        <div class="tile">DS<div class="nm">Directv Sports</div></div>
+        <div class="tile">WIN<div class="nm">Win Sports</div></div>
+        <div class="tile">GOL<div class="nm">Gol Perú</div></div>
+        <div class="tile empty">sin logo</div>
+      </div>
+      <p class="note" style="padding:0 14px 16px">El contador dice <b>de dónde</b> salieron los canales; la búsqueda ya no es decorativo (antes el <code>EditText</code> no lo leía nadie).</p>
+    </div>
+  </div>
+
+  <div>
+    <p class="cap">hoja «Fuente» · automático + override</p>
+    <div class="phone">
+      <div class="sheet" style="border-top:0">
+        <div class="handle"></div>
+        <div class="stitle">Fuente de canales</div>
+        <div class="ssub">La app no trae canales propios. Por defecto se buscan sola; aquí puedes forzar un código FG o tu propia lista.</div>
+
+        <div class="switchrow">
+          <div><b>Canales automáticos</b><small>Recorre varias fuentes públicas hasta que una responda y se queda con esa.</small></div>
+          <div class="sw"></div>
+        </div>
+        <label class="chk"><i>✓</i> Incluir también la lista global de iptv-org (pesada: varios MB)</label>
+        <div class="state">Fuente usada: Deportes · iptv-org (caché hace 12 min)</div>
+        <div class="btns">
+          <div class="ghost" style="flex:1">Actualizar ya (ignora el caché)</div>
+          <div class="ghost">Borrar caché</div>
+        </div>
+
+        <div class="hair"></div>
+        <div class="lbl">Código FG</div>
+        <div class="inp">232425</div>
+        <div class="lbl">URL de lista M3U o JSON (opcional)</div>
+        <div class="inp hint">https://…/lista.m3u8</div>
+        <div class="lbl">Endpoint que resuelve el código</div>
+        <div class="inp">https://fgcode.store/link/api.php/get?code=</div>
+        <div class="state warn">El servidor respondió 500 — la fuente está caída o el código no existe.</div>
+        <div class="btns"><div class="cta">Guardar y cargar</div></div>
+      </div>
+    </div>
+
+    <p class="cap" style="margin-top:22px">hoja de opciones · la calidad es el servidor</p>
+    <div class="phone">
+      <div class="sheet" style="padding:0">
+        <div style="display:flex;align-items:center;gap:12px;padding:16px">
+          <div style="width:38px;height:38px;border-radius:10px;background:var(--card-high);display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--text-2)">36TV</div>
+          <div><b style="font-size:15px">36 TV Huacho</b><div style="font-size:11px;color:var(--muted)">General</div></div>
+        </div>
+        <div class="opt"><span class="ic">▶</span> 720p <span class="q">SD</span></div>
+        <div class="opt" style="background:var(--cyan-tint);box-shadow:inset 0 0 0 1px var(--accent)"><span class="ic">▶</span> 1080p <span class="q">HD</span></div>
+        <div class="opt"><span class="ic">▶</span> Servidor 3 <span class="q">ALT</span></div>
+      </div>
+      <p class="note" style="padding:10px 14px 16px">En el M3U esto eran tres líneas (<code>36 TV Huacho (720p)</code>, <code>(1080p)</code>…). El tile es uno solo, como los <i>Servers</i> de la referencia.</p>
+    </div>
+  </div>
+</div>

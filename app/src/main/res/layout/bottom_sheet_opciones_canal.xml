@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hoja de opciones de canal: antes era blanca con texto negro sobre fondo blanco. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet_top_rounded"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/space_1_5"
+    android:paddingBottom="@dimen/space_1_5">
+
+    <View
+        android:layout_width="@dimen/sheet_handle_width"
+        android:layout_height="@dimen/sheet_handle_height"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bg_sheet_handle" />
+
+    <!-- Encabezado con ícono y título del canal -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/space_3"
+        android:paddingTop="@dimen/space_2"
+        android:paddingEnd="@dimen/space_3"
+        android:paddingBottom="@dimen/space_2">
+
+        <ImageView
+            android:id="@+id/iconoCanal"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/circle_background"
+            android:contentDescription="@string/canales_titulo"
+            android:padding="@dimen/space_1"
+            android:src="@drawable/ic_live_tv"
+            app:tint="@color/pelis_accent" />
+
+        <TextView
+            android:id="@+id/tituloCanal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.Blabongo.Section"
+            android:textColor="@color/pelis_text"
+            tools:text="Directv Sports" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/stroke_hair"
+        android:background="@color/pelis_border_soft" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerOpciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/space_1"
+        android:paddingBottom="@dimen/space_2"
+        android:scrollbars="none"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_opcion_bottom_sheet" />
+</LinearLayout>

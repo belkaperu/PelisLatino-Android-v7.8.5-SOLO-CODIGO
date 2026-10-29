@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+    <solid android:color="@color/pelis_text_disabled" />
+    <size android:width="@dimen/intro_dots" android:height="@dimen/intro_dots" />
+</shape>

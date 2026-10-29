@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fondo circular de los botones de ícono (buscar, limpiar, controles del
+     reproductor).
+
+     v9.7 (TV): el estado FOCUSED lleva un anillo blanco de 2 dp. Con un mando el
+     foco ES el cursor: sin este anillo no se sabe qué botón se va a pulsar. En el
+     teléfono no cambia nada porque ahí nunca hay foco sin tocar. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/pelis_cyan_tint" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/pelis_text" />
+            <corners android:radius="100dp" />
+        </shape>
+    </item>
+
+    <item>
+        <ripple android:color="@color/pelis_ripple">
+            <item android:id="@android:id/mask">
+                <shape android:shape="rectangle">
+                    <corners android:radius="100dp" />
+                    <solid android:color="@color/white" />
+                </shape>
+            </item>
+        </ripple>
+    </item>
+</selector>

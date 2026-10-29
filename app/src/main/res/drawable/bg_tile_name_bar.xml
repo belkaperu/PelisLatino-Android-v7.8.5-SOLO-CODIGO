@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Banda inferior del tile: el nombre vive AQUÍ, dentro del tile.
+
+     En el sitio la banda mide 29 px sobre un tile de 158 px (18.4 %) y es un
+     velado teal-negro que empieza transparente arriba; el nombre se lee sobre
+     cualquier logo. El degradado va de transparente (arriba) a opaco (abajo),
+     que es lo que hacía falta: la versión anterior arrancaba ya oscura. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient
+        android:angle="270"
+        android:startColor="#00001A20"
+        android:centerColor="#73001A20"
+        android:endColor="#CC001A20" />
+    <corners
+        android:bottomLeftRadius="@dimen/radius_tile"
+        android:bottomRightRadius="@dimen/radius_tile"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp" />
+</shape>

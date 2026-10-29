@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fondo de VENTANA: solo el degradado teal, sin la capa decorativa.
+
+     Antes esto apuntaba a bg_wallpaper (degradado + confeti). El confeti es un
+     vector de 94 paths y el windowBackground es el drawable que se infla
+     PRIMERO en toda la app, antes de que ninguna activity pinte nada. Cuando
+     ese vector salió mal, el fallo no dio una pantalla en rojo: cerraba el
+     proceso en el arranque, sin traza útil para el usuario.
+
+     Dejando aquí solo un <shape> (que además es lo más barato de inflar), un
+     problema en la capa decorativa ya no puede impedir que la app ABRA: se
+     vería como un fallo normal de la pantalla que la use, con su stack trace.
+     El confeti sigue estando en bg_wallpaper, que es el fondo del contenido, y
+     las paradas del degradado son las mismas, así que la transición de la
+     ventana al contenido no se nota. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient
+        android:angle="270"
+        android:startColor="@color/pelis_wall_top"
+        android:centerColor="@color/pelis_wall_mid"
+        android:endColor="@color/pelis_wall_bottom" />
+</shape>

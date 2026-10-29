@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colores de plantilla de Android Studio (se conservan: los usan recursos del sistema) -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         BLABONGO · réplica de web.dramalive.cc
+
+         NADA de aquí está inventado: cada HEX se midió sobre el sitio real
+         (Chrome del escritorio por CDP, capturas a 393x851 @3x y a 1366x641,
+         y moda de color por región — no píxel suelto). El método y las tablas
+         completas están en docs/ESTILO-DRAMALIVE-WEB.md y los volcados crudos
+         en recon-dramalive/out/.
+
+         Lo que cambia respecto a la v8: el fondo deja de ser negro neutro
+         (#0D0F14) y pasa a ser TEAL, porque web.dramalive.cc no es una app
+         negra con acento cian — es una app teal con VIDRIO encima de un fondo
+         degradado de color. Y el acento deja de ser el cian #42D1FF de
+         dramalive.app para ser el azul #2196F3 de dramalive.cc, que allí no
+         se usa como línea sino como RELLENO del elemento activo.
+
+         Un layout NO debe volver a escribir un #RRGGBB suelto.
+         ════════════════════════════════════════════════════════════════════ -->
+
+    <!-- ── Superficies ────────────────────────────────────────────────────
+         Medidas sobre el sitio: raíl #001E24/#002C31 · cabecera #024C5C ·
+         tira de categorías #0A4F60 · tile #023C46 (escritorio) y #015E68
+         (móvil, sobre el fondo claro) · rejilla #023C46. -->
+    <color name="pelis_bg">#012A33</color>
+    <color name="pelis_bg_dark">#001A20</color>
+    <color name="pelis_surface">#024C5C</color>
+    <color name="pelis_card">#023945</color>
+    <color name="pelis_card_high">#03505F</color>
+    <color name="pelis_border">#0B6274</color>
+    <color name="pelis_border_soft">#073D49</color>
+
+    <!-- Tinta: texto SOBRE un relleno de acento. En la referencia el chip
+         seleccionado es azul #2196F3 con rótulo BLANCO (3.1:1 — es su propia
+         decisión, y el chip es un control, no texto de lectura). -->
+    <color name="pelis_ink">#FFFFFF</color>
+
+    <!-- ── Fondo degradado (el "wallpaper" del sitio) ─────────────────────
+         Perfil vertical medido a lo largo de la columna de hueco entre tiles:
+         #067888 arriba · #01A9C1 · meseta #02AEC4 hacia el centro ·
+         #027C95/#01758D abajo. Tres paradas reproducen la curva. -->
+    <color name="pelis_wall_top">#0A7E90</color>
+    <color name="pelis_wall_mid">#02AEC4</color>
+    <color name="pelis_wall_bottom">#01768E</color>
+
+    <!-- Relleno del tile: el sitio NO tiñe de teal, OSCURECE. Medido con dos
+         muestras contiguas (tile x 95..135 y el hueco de al lado, x 241..248, a
+         la misma altura): wallpaper #037285 -> tile #01404A. Resolviendo
+         canal = fondo*(1-a) sale a = 0.44 en G y en B, así que es NEGRO al 44 %
+         y el tile hereda el color del fondo que tiene detrás. -->
+    <color name="pelis_tile_bg">#70000000</color>
+
+    <!-- ── Acento ─────────────────────────────────────────────────────────
+         #2196F3 es literal: es el relleno del chip de categoría seleccionado
+         (moda de 19-58 % en esa región). El sitio no tiene un segundo color de
+         marca; el resto lo hace el blanco sobre el teal. -->
+    <color name="pelis_primary">#2196F3</color>
+    <color name="pelis_primary_dark">#1976D2</color>
+    <color name="pelis_primary_deep">#0D47A1</color>
+    <!-- Relleno de CTA grande con texto blanco: #2196F3 solo da 3.1:1, que
+         pasa como control pero no como texto de botón; #1565C0 da 5.7:1. -->
+    <color name="pelis_primary_aa">#1565C0</color>
+    <!-- Acento de TEXTO e ÍCONO sobre teal oscuro: #2196F3 sobre #024C5C se
+         queda en 2.6:1, así que para línea/texto se sube un escalón de la
+         misma rama Material (Blue 300) → 4.3:1 sobre cabecera, 6.1:1 sobre bg. -->
+    <color name="pelis_accent">#64B5F6</color>
+    <color name="pelis_accent_soft">#1E5F8A</color>
+    <color name="pelis_cyan_tint">#292196F3</color>
+    <color name="pelis_cyan_ring">#802196F3</color>
+
+    <!-- ── Estados ────────────────────────────────────────────────────────
+         El rojo del sitio es el de la bandera de Argelia (#E70013) y el de
+         los recortes de confeti (#F44032). -->
+    <color name="pelis_red">#E70013</color>
+    <color name="pelis_red_dark">#8E0009</color>
+    <color name="pelis_live">#F44032</color>
+    <color name="pelis_sport">#4CAF50</color>
+    <color name="pelis_sport_dark">#2E7D32</color>
+    <!-- El amarillo del confeti medido en el bundle Flutter (#FFD740). -->
+    <color name="pelis_gold">#FFD740</color>
+    <color name="pelis_gold_ring">#33FFD740</color>
+
+    <!-- ── Texto ──────────────────────────────────────────────────────────
+         El sitio usa BLANCO PURO para todo el texto primario (no blanco roto):
+         sobre teal, no sobre negro, el blanco puro no cansa. -->
+    <color name="pelis_text">#FFFFFF</color>
+    <color name="pelis_text_secondary">#DCEDF1</color>
+    <color name="pelis_muted">#9FC0C8</color>
+    <color name="pelis_text_disabled">#6B8F98</color>
+
+    <!-- ── Capas y veladuras ──────────────────────────────────────────────
+         Los scrim pasan de azul-negro a teal-negro: sobre el degradado teal un
+         scrim neutro se ve gris. -->
+    <color name="pelis_scrim_strong">#E6001A20</color>
+    <color name="pelis_scrim_soft">#66001A20</color>
+    <color name="pelis_scrim_glass">#99012A33</color>
+    <color name="pelis_ripple">#33FFFFFF</color>
+    <!-- Filete claro del "vidrio" (el sitio bordea los tiles con negro y las
+         pastillas con blanco al 20 %). -->
+    <color name="pelis_glass_stroke">#33FFFFFF</color>
+    <color name="pelis_tile_edge">#CC000000</color>
+    <!-- Panel del drawer: medido en el sitio, el cajón es casi NEGRO (#000B0D
+         con el wallpaper detrás) y los rótulos, blanco puro. -->
+    <color name="pelis_nav_bg">#F2000E12</color>
+</resources>

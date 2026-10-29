@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- El CTA va relleno del azul de acento con TEXTO BLANCO, porque el relleno es
+     #1565C0 (5.7:1 con blanco). Sobre el #2196F3 puro, en cambio, el blanco se
+     queda en 3.1:1: eso vale para un chip (es un control), no para un botón. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/pelis_text_disabled" android:state_enabled="false" />
+    <item android:color="@color/pelis_ink" />
+</selector>

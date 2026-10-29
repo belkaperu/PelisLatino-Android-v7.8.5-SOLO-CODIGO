@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Botón circular de acción dentro del campo de búsqueda. -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/pelis_ripple">
+    <item android:id="@android:id/mask">
+        <shape android:shape="oval">
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+    <item android:id="@android:id/background">
+        <shape android:shape="oval">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/pelis_primary"
+                android:endColor="@color/pelis_primary_dark" />
+        </shape>
+    </item>
+</ripple>

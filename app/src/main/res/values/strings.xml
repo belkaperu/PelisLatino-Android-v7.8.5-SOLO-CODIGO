@@ -1,0 +1,176 @@
+<resources>
+    <string name="app_name">BLABONGO</string>
+    <string name="navigation_drawer_open">Abrir menú lateral</string>
+    <string name="navigation_drawer_close">Cerrar menú lateral</string>
+
+    <!-- AppIntro Activity Strings -->
+    <string name="btn_skip">Saltar</string>
+    <string name="btn_next">Siguiente</string>
+    <string name="btn_finish">Comenzar</string>
+
+    <!-- Marca / navegación -->
+    <string name="brand_tagline">Deportes, canales y cine en un solo lugar</string>
+    <string name="nav_header_title">BLABONGO</string>
+
+    <!-- Catálogo de películas y series -->
+    <string name="pelis_titulo">Películas y series</string>
+    <string name="pelis_subtitulo">Encuentra tu próxima historia.</string>
+    <string name="pelis_overline">Catálogo</string>
+    <string name="pelis_buscar_hint">Buscar películas o series…</string>
+    <string name="pelis_accion_buscar">Buscar títulos</string>
+    <string name="pelis_accion_limpiar">Borrar búsqueda</string>
+    <string name="pelis_filtro_todo">Todo</string>
+    <string name="pelis_filtro_peliculas">Películas</string>
+    <string name="pelis_filtro_series">Series</string>
+    <string name="pelis_filtro_genero">Género  ▾</string>
+    <string name="pelis_filtro_pais">País  ▾</string>
+    <string name="pelis_filtro_limpiar">Limpiar</string>
+    <string name="pelis_filtro_anio">Año  ▾</string>
+    <string name="pelis_filtros_toggle">Buscar y filtrar  ▾</string>
+    <string name="pelis_filtro_favoritos">★ Favoritos</string>
+    <string name="pelis_resultados">Explorar catálogo</string>
+    <string name="pelis_cargando">Cargando…</string>
+    <string name="pelis_vacio">No encontramos títulos.\nPrueba con otro nombre.</string>
+
+    <!-- Detalle -->
+    <string name="pelis_reproducir">Reproducir</string>
+    <string name="pelis_sinopsis">Sinopsis</string>
+    <string name="pelis_temporada">Temporada</string>
+
+    <!-- Canales y agenda -->
+    <string name="canales_titulo">Canales deportivos</string>
+    <string name="canales_en_vivo">EN VIVO</string>
+    <string name="canales_buscar_hint">Buscar canales…</string>
+    <string name="agenda_titulo">Agenda deportiva</string>
+    <string name="agenda_cargando">Cargando fecha…</string>
+
+    <!-- Reproductor -->
+    <string name="player_rewind">Retroceder</string>
+    <string name="player_forward">Adelantar</string>
+    <string name="player_play_pause">Reproducir o pausar</string>
+    <string name="player_volume">Volumen</string>
+    <string name="player_refresh">Refrescar stream</string>
+    <string name="player_pip">Picture-in-Picture</string>
+    <string name="player_servidores">Servidores:</string>
+    <string name="player_opcion_n">Opción %1$d</string>
+    <string name="player_opcion_fallo">Esta opción no funcionó — elige otro servidor</string>
+    <string name="player_sin_url">URL no disponible</string>
+    <string name="player_canales">Canales:</string>
+    <string name="player_sin_opciones">Sin opciones</string>
+    <string name="player_pantalla">Girar / pantalla completa</string>
+    <string name="player_volver">Volver</string>
+    <string name="player_close">Cerrar</string>
+    <!-- Descripciones de accesibilidad de las imágenes -->
+    <string name="contenido_poster">Póster</string>
+    <string name="contenido_backdrop">Imagen de fondo</string>
+
+    <!-- Menú lateral -->
+    <string name="nav_canales">Canales en vivo</string>
+    <string name="nav_agenda">Agenda deportiva</string>
+    <string name="nav_pelis">Películas y series</string>
+
+    <!-- Debug del resolver (herramienta interna) -->
+    <string name="debug_titulo">🛠️ Debug Resolver de Películas</string>
+    <string name="debug_ejemplo">Probar con ID de ejemplo</string>
+    <string name="debug_id">Probar con ID específico</string>
+    <string name="debug_logs">Ver dominios probados</string>
+    <string name="debug_resultados">Los resultados aparecerán aquí…</string>
+
+    <!-- Anuncios -->
+    <string name="ad_patrocinado">Patrocinado</string>
+    <!-- Canales: rejilla estilo DramaLive (búsqueda, tópicos, fuente propia) -->
+    <string name="canales_accion_refrescar">Actualizar canales</string>
+    <string name="canales_accion_fuente">Fuente de canales</string>
+    <string name="canales_fav_dentro">Guardar canal en favoritos</string>
+    <string name="canales_fav_si">Guardado en favoritos</string>
+    <string name="canales_fav_no">Quitado de favoritos</string>
+    <string name="canales_tab_todo">Todos</string>
+    <string name="canales_tab_desc">%1$s, %2$d canales</string>
+    <string name="fuente_estado">%1$s · %2$s</string>
+    <string name="canales_conteo">%1$d canales</string>
+    <string name="canales_conteo_filtrado">%1$d de %2$d</string>
+    <string name="canales_vacio_titulo">Sin canales</string>
+    <string name="canales_vacio_mensaje">Configura una fuente (código FG o lista M3U) para llenar esta rejilla.</string>
+    <string name="canales_error_vacio">La fuente no devolvió canales.</string>
+
+    <!-- Fuente de canales (lo que en DramaLive es "CHANGE THE SOURCE") -->
+    <string name="fuente_titulo">Fuente de canales</string>
+    <string name="fuente_intro">La app no trae canales: tú pones la lista. Pega un código FG (se resuelve con el endpoint de abajo) o una URL M3U/JSON directa.</string>
+    <string name="fuente_codigo_label">Código FG</string>
+    <string name="fuente_codigo_hint">Ej. 232425</string>
+    <string name="fuente_m3u_label">URL de lista M3U o JSON (opcional)</string>
+    <string name="fuente_m3u_hint">https://…/lista.m3u8</string>
+    <string name="fuente_endpoint_label">Endpoint que resuelve el código</string>
+    <string name="fuente_guardar">Guardar y cargar</string>
+    <string name="fuente_por_defecto">Valores por defecto</string>
+    <string name="fuente_error_vacio">Escribe un código o una URL.</string>
+    <string name="fuente_guardado">Fuente guardada</string>
+    <string name="fuente_uri_invalida">La URL no es válida.</string>
+    <!-- Carga automática de canales (sin pegar nada) -->
+    <string name="auto_titulo">Canales automáticos</string>
+    <string name="auto_sub">Recorre varias fuentes públicas hasta que una responda y se queda con esa. Hace falta solo para llenar la rejilla; cada señal sigue pudiendo fallar al abrirla.</string>
+    <string name="auto_activar">Usar automáticamente cuando no haya código ni URL</string>
+    <string name="auto_alcance_titulo">Tamaño del catálogo</string>
+    <string name="auto_alcance_sub">Corto: deportes + tu país (cientos). LATAM: toda Latinoamérica en español (≈2.400). Global: el índice completo (≈11.000, 2,5 MB). Sirve igual con datos: la lista se cachea 12 h.</string>
+    <string name="auto_alcance_corto">Corto</string>
+    <string name="auto_alcance_latam">LATAM</string>
+    <string name="auto_alcance_global">Global</string>
+    <string name="auto_alcance_ok">Catálogo %1$s · hasta %2$d canales</string>
+    <string name="auto_ganador">Fuente usada: %1$s</string>
+    <string name="auto_sin_guardar">Todavía no se guardó ninguna fuente automática.</string>
+    <string name="auto_forzar">Actualizar ya (ignora el caché)</string>
+    <string name="auto_vaciar">Borrar caché de listas</string>
+    <string name="auto_cache_vaciada">Caché borrado</string>
+    <string name="auto_fallo">Ninguna fuente automática respondió. %1$s</string>
+    <string name="auto_ok">%1$s · %2$d canales</string>
+    <string name="logos_titulo">Reducir los logos</string>
+    <string name="logos_sub">Cada logo se pide ya recortado y en WebP a través de images.weserv.nl. Con catálogos de miles de canales la rejilla se llena mucho antes. Apagado = la URL original del M3U. Ten en cuenta que al encenderlo ese servicio ve las listas que abres.</string>
+    <string name="xtream_titulo">Panel Xtream</string>
+    <string name="xtream_sub">Llama a player_api.php de tu panel y trae el catálogo entero, con logos y categorías reales. Necesitas host, usuario y contraseña que te dio tu proveedor; sin credenciales el panel responde ACCESS DENIED. Se guarda solo en este teléfono.</string>
+    <string name="xtream_host_label">Host del panel</string>
+    <string name="xtream_host_hint">http://panel.net:8080 (o pega la URL de player_api.php)</string>
+    <string name="xtream_usuario_hint">Usuario</string>
+    <string name="xtream_clave_hint">Contraseña</string>
+    <string name="xtream_probar">Guardar y cargar del panel</string>
+    <string name="xtream_cargando">Probando %1$s…</string>
+    <string name="xtream_ok">%1$s · %2$d canales · %3$d categorías</string>
+    <string name="xtream_fallo">Panel: %1$s</string>
+    <string name="xtream_incompleto">Falta host, usuario o contraseña</string>
+    <string name="fuente_probar">Probar la fuente ahora</string>
+    <string name="fuente_prueba_cargando">Pidiendo %1$s…</string>
+    <string name="fuente_prueba_ok">%1$d canales · %2$s</string>
+    <string name="fuente_prueba_fallo">No sirvió (HTTP %1$d): %2$s</string>
+    <string name="pegada_label">Pegar lista o URL de un canal</string>
+    <string name="cabeceras_label">Encabezados al abrir</string>
+    <string name="cabeceras_hint">Referer: https://mi-proveedor.net/&#10;Cookie: sess=abc123</string>
+    <string name="cabeceras_sub">Un encabezado por línea, en el formato `Nombre: valor` (también aceptan `=` y JSON pegado del inspector). Empieza la línea con `@dominio.net` para mandarlo sólo a ese host y sus subdominios. Muchos CDNs no dejan abrir la URL sola: responden 403 si no ven su propio `Referer`, o piden la `Cookie` de la sesión — esto es lo que hay que poner aquí. `Host`, `Content-Length`, `Transfer-Encoding`, `Connection`, `Upgrade` y `Accept-Encoding` se ignoran, porque el reproductor las calcula él. Vacío = comportamiento de siempre.</string>
+    <string name="cabeceras_descartadas">Descartadas (restringidas): %1$s</string>
+    <string name="clave_drama_label">Clave del reproductor web (webPlayerSecret)</string>
+    <string name="clave_drama_hint">pegar solo si un enlace #U2FsdGVkX1 no abre con la publica</string>
+    <string name="clave_drama_sub">Los enlaces `player.html#&lt;hash&gt;` se abren solos con la clave publica del bundle. Cuando un grupo usa una clave propia (los arabes sobre rapiddatahost, medido), esa clave es el campo `webPlayerSecret` del config del propio cliente: pegala aqui y TODOS los hashes se desenrollan en el telefono. Vacio = solo la publica; no hay nada que romper si tus enlaces ya abren.</string>
+    <string name="pegada_sub">Si el portal no expone su lista (algunos portales cifran sus peticiones y no dejan leer la lista), copia tú el texto y pégalo aquí. Funciona con M3U/M3U8 completo, con el JSON de canales, o con UNA sola URL de stream por línea (por ejemplo la .m3u8 que reproduce el navegador). Se guarda en el teléfono y no necesita red.</string>
+    <string name="pegada_hint">#EXTM3U…  o  https://cdn.tv/live/espn/index.m3u8</string>
+    <string name="pegada_usar">Usar lo pegado</string>
+    <string name="pegada_quitar">Quitar</string>
+    <string name="pegada_ok">%1$d canales listos (sin red: se quedan guardados)</string>
+    <string name="drama_sesion_label">Sesión web (plantillas.json)</string>
+    <string name="drama_sesion_hint">Pega AQUÍ el JSON que descarga DramaExport.plantillas() en la consola del navegador (no es el código FG, ni un enlace del player; hazlo recién: la sesión caduca en minutos)</string>
+    <string name="drama_ses_fg">Eso es un código FG, y la extracción no lo usa: el código FG va en el campo «Código» de arriba. Para EXTRAER canales necesitas plantillas.json: navegador → consola → DramaExport.plantillas() → pega aquí el archivo.</string>
+    <string name="drama_ses_enlace">Eso es un enlace de UN solo canal (player.html#… o una URL de stream). No hay que extraer nada: pégalo en «Pegar lista o URL» y ese canal se abre directo con su propio descifrado.</string>
+    <string name="drama_ses_m3u">Eso ya es una lista M3U: pégala en «Pegar lista o URL» y pulsa «Usar lista»; no pasa por la extracción.</string>
+    <string name="drama_ses_json">Es JSON, pero no parece la sesión (le faltan los campos plantillas/glt del exportador). Ejecuta en la consola: await DramaExport.plantillas() y pega el archivo descargado completo.</string>
+    <string name="drama_extraer">Extraer canales</string>
+    <string name="drama_extraer_cargando">Extrayendo con tu sesión…</string>
+    <string name="drama_extra_ok">%1$d canales añadidos a la rejilla</string>
+    <string name="drama_extra_fallo">Extracción: %1$s</string>
+    <string name="drama_extra_quitar">Quitar extraídos</string>
+    <string name="drama_extra_quitado">Canales extraídos quitados de la rejilla</string>
+    <string name="drama_sesion_vacia">Pega primero la plantillas.json (en el navegador: DramaExport.plantillas())</string>
+    <string name="drama_auto_btn">Conectar DramaLive (automático)</string>
+    <string name="drama_auto_esperando">Abriendo DramaLive dentro de la app. Entra tu código UNA vez en la página; al detectar la sesión, la app enumera los canales sola y se cierra. No toques la consola de nada: ya no hace falta.</string>
+    <string name="drama_auto_ok">%1$d canales DramaLive guardados — vuelve a «En vivo» y la rejilla se refresca sola</string>
+    <string name="drama_auto_headless_sin">Auto-refresco: sin respuesta del sitio (sesión caducada). Pulsa «Conectar DramaLive» y reingresa tu código.</string>
+    <string name="drama_auto_copiar">Copiar debug</string>
+    <string name="pegada_no_entendida">No lo reconocí: pega un M3U (#EXTM3U), un JSON o una URL que empiece por http</string>
+    <string name="pegada_quitada">Quitada la lista pegada</string>
+</resources>

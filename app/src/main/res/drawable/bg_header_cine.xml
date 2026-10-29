@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Cabecera de pantalla: VELADURA sobre el fondo, no un color opaco.
+
+     Medido en el sitio: la barra superior rinde #025462 sobre un fondo que
+     arriba es #028897. Es decir, el sitio oscurece la zona de cabecera con un
+     negro-teal al ~40 % y lo desvanece hacia abajo. Eso es exactamente esto:
+     opaco arriba, transparente abajo, para que la lista de debajo se funda con
+     el mismo fondo en vez de cortarse en una línea. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="#8C001A20"
+                android:centerColor="#59001A20"
+                android:endColor="#00001A20" />
+        </shape>
+    </item>
+</layer-list>

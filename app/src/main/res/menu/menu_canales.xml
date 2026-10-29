@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Barra de Canales (port del repo, v9.6 "una sola barra"): el buscador va como
+     ACTION VIEW con collapseActionView — icono que al pulsarlo despliega la pildora,
+     como en web.dramalive.cc (captura probe-search).
+
+     El item "fuente" del repo NO se porto: la hoja Fuente se quito a proposito en
+     v3.2.45 (el FG 232425 ya viene empotrado y el auto conecta solo). -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/accion_buscar_canales"
+        android:icon="@drawable/ic_pelis_search"
+        android:title="@string/canales_buscar_hint"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+
+    <item
+        android:id="@+id/accion_refrescar_canales"
+        android:icon="@drawable/ic_refresh"
+        android:title="@string/canales_accion_refrescar"
+        app:showAsAction="always" />
+
+</menu>

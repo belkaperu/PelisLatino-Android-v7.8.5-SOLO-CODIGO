@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <!-- v3.2.36: fuera los rotulos («Categoria / Peliculas y Series / Encuentra tu
+         proxima historia», orden del usuario). El encabezado ES el panel plegable:
+         cerrado no ocupa ni un pixel; abierto trae el fondo de cine. -->
+    <LinearLayout
+        android:id="@+id/panelFiltrosPelis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_header_cine"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/space_3"
+        android:paddingTop="@dimen/space_3"
+        android:paddingEnd="@dimen/space_3"
+        android:paddingBottom="@dimen/space_2"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <!-- Búsqueda -->
+        <LinearLayout
+            android:id="@+id/campoBusquedaPelis"
+            style="@style/Widget.Blabongo.SearchField"
+            android:layout_marginTop="@dimen/space_3">
+
+            <ImageView
+                android:layout_width="@dimen/icon_md"
+                android:layout_height="@dimen/icon_md"
+                android:layout_marginStart="@dimen/space_1"
+                android:contentDescription="@string/pelis_accion_buscar"
+                android:src="@drawable/ic_pelis_search"
+                app:tint="@color/pelis_muted" />
+
+            <EditText
+                android:id="@+id/editBuscarPelis"
+                style="@style/Widget.Blabongo.SearchInput"
+                android:hint="@string/pelis_buscar_hint"
+                android:imeOptions="actionSearch"
+                android:inputType="textCapSentences" />
+
+            <ImageButton
+                android:id="@+id/btnLimpiarBusquedaPelis"
+                style="@style/Widget.Blabongo.SearchAction"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/pelis_accion_limpiar"
+                android:src="@drawable/ic_pelis_close"
+                android:visibility="gone"
+                app:tint="@color/pelis_muted" />
+
+            <ImageButton
+                android:id="@+id/btnBuscarPelis"
+                style="@style/Widget.Blabongo.SearchAction"
+                android:layout_marginStart="@dimen/space_1"
+                android:background="@drawable/bg_search_action"
+                android:contentDescription="@string/pelis_accion_buscar"
+                android:src="@drawable/ic_pelis_search"
+                app:tint="@color/pelis_text" />
+        </LinearLayout>
+
+        <!-- Filtros de tipo -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_2"
+            android:clipToPadding="false"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="0dp"
+                android:paddingEnd="@dimen/space_1">
+
+                <TextView
+                    android:id="@+id/btnTodosPelis"
+                    style="@style/Widget.Blabongo.Chip"
+                    android:text="@string/pelis_filtro_todo" />
+
+                <TextView
+                    android:id="@+id/btnPeliculasPelis"
+                    style="@style/Widget.Blabongo.Chip"
+                    android:layout_marginStart="@dimen/space_1_5"
+                    android:text="@string/pelis_filtro_peliculas" />
+
+                <TextView
+                    android:id="@+id/btnSeriesPelis"
+                    style="@style/Widget.Blabongo.Chip"
+                    android:layout_marginStart="@dimen/space_1_5"
+                    android:text="@string/pelis_filtro_series" />
+
+                <TextView
+                    android:id="@+id/btnFavoritosPelis"
+                    style="@style/Widget.Blabongo.Chip"
+                    android:layout_marginStart="@dimen/space_1_5"
+                    android:text="@string/pelis_filtro_favoritos" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Filtros avanzados -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_1"
+            android:clipToPadding="false"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="0dp"
+                android:paddingEnd="@dimen/space_1">
+
+                <TextView
+                    android:id="@+id/btnFiltroGeneroPelis"
+                    style="@style/Widget.Blabongo.Chip"
+                    android:text="@string/pelis_filtro_genero" />
+
+                <TextView
+                    android:id="@+id/btnFiltroAnioPelis"
+                    style="@style/Widget.Blabongo.Chip"
+                    android:layout_marginStart="@dimen/space_1_5"
+                    android:text="@string/pelis_filtro_anio" />
+
+                <TextView
+                    android:id="@+id/btnFiltroPaisPelis"
+                    style="@style/Widget.Blabongo.Chip"
+                    android:layout_marginStart="@dimen/space_1_5"
+                    android:text="@string/pelis_filtro_pais" />
+
+                <TextView
+                    android:id="@+id/btnLimpiarFiltrosPelis"
+                    style="@style/Widget.Blabongo.Chip.Danger"
+                    android:layout_marginStart="@dimen/space_1_5"
+                    android:text="@string/pelis_filtro_limpiar"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- v3.2.38: la lista de opciones de Genero/Pais/Anio se despliega AQUI,
+             dentro del panel — sin ventanas que la ROM cierra. La llena el java. -->
+        <ScrollView
+            android:id="@+id/scrollListaFiltros"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_1_5"
+            android:background="@drawable/bg_pelis_sheet"
+            android:maxHeight="300dp"
+            android:scrollbars="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/listaFiltrosInline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_1" />
+        </ScrollView>
+
+        <!-- v3.2.37: tira de años TOCABLE dentro del panel (la llena el java).
+             El año se aplica con un solo toque, sin diálogo — ya no hay nada
+             que "se cierre". El último chip abre la lista completa si hace falta. -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_1"
+            android:clipToPadding="false"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/tiraAniosPelis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/space_1" />
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <!-- ══════════════ RESULTADOS ══════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/space_3"
+        android:paddingTop="@dimen/space_2"
+        android:paddingEnd="@dimen/space_3"
+        android:paddingBottom="@dimen/space_1_5">
+
+        <View style="@style/Widget.Blabongo.SectionBar" />
+
+        <TextView
+            android:id="@+id/txtResultadosPelis"
+            style="@style/Widget.Blabongo.SectionTitle"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/space_1_5"
+            android:layout_weight="1"
+            android:text="@string/pelis_resultados" />
+
+        <TextView
+            android:id="@+id/btnToggleFiltrosPelis"
+            style="@style/Widget.Blabongo.Chip"
+            android:layout_marginStart="@dimen/space_1_5"
+            android:text="@string/pelis_filtros_toggle" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerPelis"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/grid_gutter"
+            android:paddingTop="@dimen/space_0_5"
+            android:paddingEnd="@dimen/grid_gutter"
+            android:paddingBottom="@dimen/space_4"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_pelis" />
+
+        <ProgressBar
+            android:id="@+id/progressPelis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/pelis_accent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/space_5">
+
+            <TextView
+                android:id="@+id/txtVacioPelis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_2"
+                android:background="@drawable/bg_row_feedback"
+                android:gravity="center"
+                android:padding="@dimen/space_2"
+                android:text="@string/pelis_vacio"
+                android:textAppearance="@style/TextAppearance.Blabongo.Body"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/progressPelisPie"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/pelis_accent"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</LinearLayout>

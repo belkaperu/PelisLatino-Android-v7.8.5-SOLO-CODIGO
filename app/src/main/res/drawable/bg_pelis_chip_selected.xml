@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SELECCIONADO = RELLENO de acento, no anillo.
+
+     Este es el cambio de fondo respecto a la v8. web.dramalive.cc marca lo
+     activo con un bloque azul #2196F3 lleno (medido: 19-58 % de la region del
+     chip) y el rótulo en blanco encima. La v8 usaba anillo cian + tinte al
+     10 %, que es el lenguaje de dramalive.app, no el de dramalive.cc. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/pelis_primary" />
+    <corners android:radius="@dimen/radius_chip" />
+    <stroke android:width="@dimen/stroke_hair" android:color="@color/pelis_glass_stroke" />
+</shape>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pestaña de tópico, calcada de DramaLive (All / Topic 1 / Topic 2): ícono arriba,
+     rótulo abajo. El estado selected lo gestiona el fragmento con setSelected(), que
+     activa bg_canal_tab y los colores pelis_tab_*.
+
+     Dos "iconos" posibles, excluyentes (port del repo 82105f5):
+       - imgTabCanal: el glifo (grid, estrella…), con su tinte por estado.
+       - txtTabBandera: la bandera del pais, como emoji. Drama pinta la bandera en su
+         pestana de pais; aqui sale del topic (live_tv_peru) o del codigo ISO, sin
+         empaquetar 250 SVG.
+
+     tools:ignore="UseCompoundDrawables": lint sugiere un solo TextView con drawableTop,
+     pero eso quitaría el control del tamaño del ícono (30 dp) y de su lista de estados. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Blabongo.Tab"
+    android:layout_marginEnd="@dimen/space_1"
+    tools:ignore="UseCompoundDrawables">
+
+    <ImageView
+        android:id="@+id/imgTabCanal"
+        style="@style/Widget.Blabongo.TabIcon"
+        android:contentDescription="@null" />
+
+    <TextView
+        android:id="@+id/txtTabBandera"
+        android:layout_width="@dimen/canal_tab_icon"
+        android:layout_height="@dimen/canal_tab_icon"
+        android:gravity="center"
+        android:importantForAccessibility="no"
+        android:textSize="26sp"
+        android:visibility="gone"
+        tools:text="🇵🇪"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/txtTabCanal"
+        style="@style/Widget.Blabongo.TabLabel"
+        tools:text="Fútbol" />
+</LinearLayout>

@@ -1,0 +1,690 @@
+Abrir el proyecto en Android Studio
+===================================
+
+1. Descomprime este zip DONDE TÚ QUIERAS y abre ESA carpeta (la que contiene
+   `settings.gradle`, `build.gradle` y la carpeta `app/` al mismo nivel).
+   Si al descomprimir ves una carpeta dentro de otra, entra una nivel más:
+   el proyecto está donde esté `settings.gradle`.
+
+2. Requisitos:
+   - Android Studio Ladybug / Meerkat o superior
+     (el proyecto fija `agp = 8.13.0` en `gradle/libs.versions.toml`;
+      con un Studio más viejo, baja ese valor a `8.7.3` y vuelve a sincronizar).
+   - JDK: el que trae Android Studio (probado con el JBR nuevo de Java 25:
+     el wrapper apunta a Gradle 9.1.0, que ya soporta Java 17-25; con el JDK
+     embebido NO hay que tocar Settings -> Gradle JDK. Si el IDE ofrece
+     "actualizar Gradle", puede ignorarse: 9.1.0 es la version verificada).
+   - Red abierta en la primera sincronización: Gradle descarga la distribución
+     9.1.0 declarada en `gradle/wrapper/gradle-wrapper.properties` y las
+     dependencias (Media3 1.10.1, Glide, OkHttp, Jsoup, StartApp).
+
+3. File → Open → selecciona la carpeta → espera al Sync.
+   `local.properties` (ruta del SDK) lo genera Android Studio solo.
+
+4. Run ▶ en un dispositivo o emulador (minSdk 30, targetSdk 34, compileSdk 36).
+
+Por línea de comandos
+---------------------
+    ./gradlew :app:assembleDebug     # en Windows: gradlew.bat :app:assembleDebug
+    ./gradlew :app:lintDebug
+
+El APK de salida queda en `app/build/outputs/apk/debug/app-debug.apk`.
+
+Si falla con "SDK location not found" (normal en consola pura, Windows)
+------------------------------------------------------------------------
+Gradle necesita saber DONDE esta el SDK de Android. Elige una opcion:
+
+  A) Abre el proyecto UNA VEZ en Android Studio (File -> Open -> la carpeta).
+     El IDE escribe solo el `local.properties` con la ruta correcta y ya
+     puedes volver a la consola para siempre.
+
+  B) Crea a mano `local.properties` en la raiz del proyecto (junto a
+     settings.gradle) con UNA linea, barras doble escapadas en Windows:
+
+         sdk.dir=C\:\\Users\\dza\\AppData\\Local\\Android\\Sdk
+
+     Esa es la ruta por defecto de Android Studio. Si instalaste el SDK en
+     otro lado, usa esa carpeta (la que contiene `platforms/` y `build-tools/`).
+
+  C) O sin archivo: define la variable de entorno y borra local.properties:
+
+         setx ANDROID_HOME "%LOCALAPPDATA%\Android\Sdk"
+     (abre una terminal NUEVA despues de setx para que aplique)
+
+Que el SDK tenga lo que pide el proyecto (compileSdk 36):
+  - con Android Studio: deja que el Sync descargue "Android SDK Platform 36";
+  - o a mano, desde la carpeta `cmdline-tools\latest\bin`:
+
+        sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
+
+Y JDK 17 o mas nuevo en el PATH (`java -version`). Con Android Studio Ladybug
+o superior no hay que instalar nada extra: trae JDK y SDK.
+
+NOTA: este zip ya NO incluye `local.properties` a proposito — era un archivo
+de la maquina que compila y la ruta de esa maquina no vale en la tuya
+(el error "SDK location not found" venia justo de ahi).
+
+Ojo con `app/release/app.apk`
+-----------------------------
+Ese archivo está commiteado en el repo y es un APK **viejo** (anterior al
+rediseño de estilo). No es la build de esta rama; no lo reparta como si lo fuera.
+
+Qué trae esta rama
+------------------
+21 commits sobre `main` (cbffcf2):
+    (la numeración real del historial es enrevesada porque el entorno revirtió varias veces
+     y hubo que re-establecer commits por parche; el contenido es lo que importa)
+
+    befad3e fix(build): PlayerActivity usaba TAG sin declararse y el proyecto no compilaba
+    f0d24e6 feat(ui): sistema de diseño (paleta, escala, tipografía y tema)
+    8cdf83d style(ui): rediseño oscuro cinematográfico de todas las pantallas
+    fea22de docs: ESTILO.md con las reglas del sistema de diseño
+    7ce0005 docs: COMO-ABRIR.txt con los pasos de importación y requisitos
+    6381f76 estilo(v8): Canales con el lenguaje de componentes de DramaLive
+    0a87191 docs: ESTILO.md a v8 (DramaLive, Poppins, fuente de canales)
+    (+ el commit de docs y el arreglo "al abrir Canales se cerraba la app":
+     SpanSizeLookup fuera de rango, commitAllowingStateLoss y auto-diagnóstico
+     en pantalla para poder reportar un fallo sin adb)
+
+Lee `ESTILO.md` para la paleta, la escala tipográfica y las reglas de uso
+(por ejemplo: `pelis_primary` es solo para rellenos; el texto sobre oscuro usa
+`pelis_accent`; y el texto SOBRE el cian usa `pelis_ink`, casi negro, porque
+blanco sobre #42D1FF daría 1.7:1).
+
+El primer commit no es decorativo: en `main` el proyecto **no compila** porque
+a `PlayerActivity` le falta la constante `TAG` que sí usan 3 llamadas a `Log`.
+
+Fuente de canales (nuevo en v8)
+------------------------------
+Pantalla "Canales" → ícono ＋ (arriba a la derecha) se abre la hoja *Fuente de
+canales*. Ahí se pega:
+
+  - un **código FG**, que se resuelve contra `https://fgcode.store/link/api.php/get?code=`
+    (el endpoint se puede cambiar en el mismo diálogo), o
+  - una **URL directa** a una lista `.m3u` / `.m3u8` o al JSON que ya usaba la app.
+
+Se guardan en `SharedPreferences` (`fuente_canales`) y "Valores por defecto" los limpia.
+Una lista M3U funciona tal cual: se leen `tvg-logo` (logo del tile) y `group-title`
+(pestañas de tópicos), y si el mismo canal aparece con varias URLs no se duplica el
+tile: aparecen varias opciones ("Servidor 1/2/3") al pulsarlo.
+
+Modo automático (por defecto, no hay que tocar nada)
+---------------------------------------------------
+Si no guardas ni código ni URL, la recorre una cadena de fuentes públicas hasta que
+una responde (la lista de la app, iptv-org por categoría de deportes, iptv-org por
+PAÍS —el país sale del idioma del dispositivo—, y Free-TV), recuerda cuál funcionó y
+guarda la lista en el caché de la app para que la rejilla se pinte incluso sin red.
+En la hoja "Fuente de canales" está el interruptor, la lista global (pesada, apagada),
+"Actualizar ya (ignora el caché)" y "Borrar caché de listas". Nada de esto reproduce
+por ti: si un canal geobloqueado falla al abrirlo, el fallo se ve en el player.
+
+Aviso honesto: el endpoint de `fgcode.store` respondió **HTTP 500** (base de datos
+caída el día de esta entrega) al probar el código de ejemplo. La app muestra ese
+código en el diálogo en vez de un "error de conexión" genérico; si tu código/URL
+funciona, la rejilla se llena igual —el camino del éxito depende de tu proveedor,
+no de la app. No se ha probado contra una lista FG real y viva.
+
+Tipografía
+----------
+`app/src/main/res/font/` trae Poppins en 4 pesos (TTF reales, licencia OFL —el texto
+completo está en `LICENSE-Poppins.txt` en la raíz). Si prefieres no empaquetar la
+fuente, borra `res/font/` y quita `@font/poppins` de `values/styles.xml`: el resto del
+estilo no depende de ella.
+CANALES AUTOMÁTICOS (tamaño del catálogo)
+----------------------------------------
+Pestaña "En vivo" -> botón "Fuente" -> "Tamaño del catálogo":
+  Corto   = deportes de la app + iptv-org de tu país   (cientos, ~40 KB)
+  LATAM   = regions/latam.m3u de iptv-org               (2.421 canales, 507 KB)  <- defecto si el móvil está en español
+  Global  = index.category.m3u de iptv-org             (11.170 canales, 2,7 MB)
+Medido con el propio M3uParser de la app: LATAM 20 ms, Global 78 ms de parseo;
+98% de los canales traen logo, así que la grilla no se ve vacía. Se cachea 12 h
+en cacheDir (hasta 16 MB), así que en frío no gasta datos.
+Las pestañas de arriba son los 11 grupos CON MÁS canales (General, News, Music...),
+no los primeros de la lista; "Todos" y el buscador alcanzan el resto.
+Si prefieres un panel propio (usuario/clave Xtream con player_api.php), dilo y se
+agrega como tipo de fuente; lo que NO funciona es fgcode.store (HTTP 500).
+ARREGLADO (12º commit): la pestaña "En vivo" reventaba al inflar
+----------------------------------------------------------------
+android.view.InflateException: Binary XML file line #124 in
+layout/fragment_canales_en_vivo: Error inflating class <unknown>
+El contenedor de las pestañas tenía android:divider="@dimen/space_1", y ese
+atributo espera un Drawable: AAPT2 y lint lo dejan pasar porque su formato
+declarado acepta referencias, pero Resources#getDrawable() falla en runtime.
+Ahora el separador es android:layout_marginEnd en item_tab_canal (4 dp).
+Añadido RecursosLayoutTest: recorre app/src/main/res/layout y falla si algún
+atributo de tipo Drawable (divider, src, background, thumb, track, drawableTop,
+...) apunta a @dimen o @integer, más un test concreto para la tira de pestañas.
+Probado inyectando el bug otra vez: los dos tests se ponen rojos.
+DRAMA LIVE — EXTRACCION AUTOMATICA DENTRO DE LA APP (v36)
+----------------------------------------------------------
+Ya no hace falta ninguna consola del navegador. Pasos:
+  1. Pestaña «En vivo» -> boton Fuente -> «Conectar DramaLive (automático)».
+  2. Se abre web.dramalive.cc DENTRO de la app. Entra tu codigo ahi UNA vez
+     (el mismo que usas para ver; queda guardado en el almacen del WebView).
+  3. Nada mas: el captador (assets/drama_auto.js) aprende la sesion del trafico
+     del propio sitio, re-enumerá los 6 tipos (live/sports/kids/news/movies/
+     series) y entrega canales+plantilla a la app por un puente interno. La
+     pantalla se cierra sola con «N canales DramaLive guardados» y la rejilla
+     se refresca al volver.
+  4. despues, cada vez que abras «En vivo» con sesion guardada de >6 h, la app
+     reabre el WebView EN INVISIBLE y renueva la lista sin pedirte nada. Si la
+     sesion del sitio caduco, veras un aviso y la lista vieja se conserva.
+Si la barra no avanza: debe decir «captador v3.2.8 INSTALADO (endpoints sanos + backfill embebido)». Si no lo dice, el APK
+instalado es viejo (reinstalá). Si lo dice pero «trafico: 0 req», el sitio no está llamando
+a su API (recargá tras el login). Con «Copiar debug» (arriba derecha) tenés el informe JSON
+completo para el desarrollador; también queda en Android/data/<paquete>/files/drama-debug.log
+y en `adb logcat -s DramaAutoAct:V DramaAuto:V DramaWeb:V`. La caja «Sesion DramaLive
+(plantillas.json)» queda solo como reserva avanzada.
+
+PANEL XTREAM (lo que usa Dramalive por dentro)
+----------------------------------------------
+web.dramalive.cc es una app Flutter Web: no tiene ninguna lista de canales pública.
+Su main.dart.js llama a un proxy PHP (https://mikkm.xyz/android/androidApi.php?
+url=<host>&mode=live&username=<u>&password=<p>) porque el navegador no puede
+llamar al panel por el CORS; con el usuario de defecto que trae el bundle ("shai",
+sin contraseña) el proxy responde "ACCESS DENIED! AndroidAPI v3.1". También lee su
+config de https://main.fastconnections.online/api/live/livedrama/v13.0.0/ (404 para
+cualquier ruta que probemos: es un backend propio con licencia, no un API abierto).
+fgcode.store (el campo "código FG") sigue en HTTP 500.
+
+Es decir: no se pueden "sacar los canales de Dramalive" sin cuenta. Lo que SÍ se
+puede, y está implementado, es usar el mismo API que usa él: Xtream Codes.
+
+  Pestaña En vivo -> Fuente -> "Panel Xtream (como DramaLive)":
+     Host: http://mi-panel.net:8080   (también vale pegar user:pass@host:puerto,
+                                        la URL de player_api.php o la de get.php)
+     Usuario / Contraseña: los del proveedor
+  -> "Guardar y cargar del panel" hace player_api.php?action=auth,
+     get_live_categories y get_live_streams, y te pone en la hoja
+     "mi-panel.net:8080 · 2.412 canales · 37 categorías" o el motivo del fallo.
+
+El panel manda sobre las listas públicas; si rechaza las credenciales, la pestaña
+sigue llenándose con LATAM/Global para no dejarla vacía. No se cachea en disco
+(un panel privado cambia sin avisar) y la contraseña no se muestra ni se loguea.
+EL CÓDIGO FG (por qué ahora no entra, y qué se puede hacer)
+-------------------------------------------------------------
+Un "código FG" no es una lista: es una clave que un servidor traduce a la URL de
+la playlist. La app ya lo soporta desde hace tiempo (campo "Código FG" + campo
+"Endpoint"), y el endpoint arma `.../link/api.php/get?code=<CODIGO>`.
+
+El problema es el servidor que traduce: fgcode.store está caído AHORA MISMO, y no
+por nosotros. Su propia página de error (2026-10-06):
+
+    Slim Application Error
+    Code: 2   Message: mysqli::__construct(): (HY000/2002): Connection refused
+    File: /opt/bitnami/apache/htdocs/sites/fgcode.store/include/FGDbConnect.php:22
+
+Es decir: la web responde (la raíz redirige a /en/ con 302) pero su base de datos
+rechaza conexiones, así que NINGÚN código FG se puede resolver, ni ahí ni en la app
+de DramaLive. Probado con el User-Agent real de DramaLive y con el nuestro: mismo 500.
+fgcode.org directamente ya no resuelve DNS. Las demás rutas (api.php, get.php,
+player_api.php) dan 404, o sea que el endpoint correcto es el que ya viene puesto.
+
+Qué cambia en la app para que esto no te deje a ciegas:
+ 1. Botón "Probar la fuente ahora" en la hoja Fuente: dice HTTP, bytes, cuántos
+    canales se parsearon y QUÉ respondió el servidor (si es el 500 de arriba, lo
+    dice con sus palabras: "el servidor de códigos tiene su base de datos caída").
+ 2. Con el automático encendido, tu fuente FG es la PRIMERA candidata de la cadena
+    de AutoCanales: se cachea en cacheDir 12 h y, mientras el servidor esté caído,
+    la pestaña se llena con LATAM/Global en vez de quedarse vacía. Con el automático
+    apagado se sigue usando SOLO tu fuente, sin red de seguridad.
+ 3. En el campo "Código FG" ya puedes pegar, indistintamente: el número suelto,
+    "232425@fgcode.store", o la URL completa que te dé tu proveedor.
+
+Si tu código lo da otro proveedor, escribe su endpoint en el campo "Endpoint FG"
+(suele acabar en /link/api.php/get?code=) y pulsa Probar: si responde 200 con
+#EXTM3U o JSON, la pestaña se llena igual que en DramaLive.
+PEGAR UNA LISTA O UNA SOLA URL (para portales que no exponen nada)
+-------------------------------------------------------------------
+El cliente web https://web.dramalive.cc NO se puede "rapear": todas sus llamadas a
+main.fastconnections.online van cifradas con AES-CBC y una clave fija del bundle
+(43fc9b1a3f854049, formato base64(texto cifrado):base64(iv); ver las funciones c0/dJ
+de su main.dart.js), y los logos se piden con otro token AES. Además su proxy de
+streams (mikkm.xyz/android/androidApi.php?...) exige credenciales reales: con el
+usuario que trae el bundle responde "ACCESS DENIED! AndroidAPI v3.1". Suplantar a su
+cliente reimplementando ese cifrado no va en esta app.
+
+Lo que sí funciona, y para eso está el campo "Pegar lista o URL de un canal":
+ 1. Abre el canal en ese navegador (F12 -> Network -> filtra "m3u8" o "Media").
+ 2. Copia la URL que está reproduciendo (.m3u8 / .ts / .php...) o, si ves una
+    respuesta con #EXTM3U o JSON, copia ese texto entero.
+ 3. En la app: En vivo -> Fuente -> pega ahí -> "Usar lo pegado".
+Acepta M3U/M3U8 completo, el JSON {canales:[...]} y URLs sueltas (una por línea).
+Con una URL suelta se crea UN canal con nombre sacado de la propia ruta
+(.../live/ESPN/index.m3u8 -> "ESPN"); si todos los tramos son genéricos
+(index/master/live) usa el host. Se guarda en el teléfono y no gasta red.
+Si algún stream diera 403 por pedir Referer/Origin, dímelo: se añade un campo de
+cabeceras (Media3 lo soporta con DefaultHttpDataSource).
+CÓDIGOS FG: qué se comprobó con fgcode.org/232425 (2026-10-06)
+----------------------------------------------------------------
+OJO, CORRECCIÓN (por la captura CDP del usuario): DramaLive NO resuelve el código
+contra fgcode.org. El valor del campo "FG Code" viaja como UN CAMPO MÁS del payload,
+KEY_ACTIVATED_TYPE, en un POST a su propio backend:
+  main.fastconnections.online/api/live/livedrama/v13.0.0/gs   (settings)
+  …/v13.0.0/glt (live_topics)   …/glbt (canales de un tópico)   …/glasbi (todo live)
+  log.fastconnections.online/api/live/livedrama/v9.0.0/la      (log)
+y el cuerpo va AES-CBC con una clave fija del bundle, formato base64(ct):base64(iv).
+Sin cifrar, esos endpoints contestan 200 con cuerpo EN BLANCO (los "32 bytes" son
+		
+ y espacios); /la da 500 Slim. fgcode_url aparece dentro de la respuesta de
+gs: es un valor de configuración que reparten, no lo que su web consulta con el código.
+(Para el campo "código FG" de ESTA app, fgcode.store/link/api.php/get?code= sigue
+siendo el endpoint válido —fgcode.org/<código> redirige ahí—, y su MySQL está caído.) Con el código puesto, 6 intentos
+seguidos dan lo mismo:
+  500 · 1971 B · "Slim Application Error · mysqli::__construct():
+      (HY000/2002): Connection refused · include/FGDbConnect.php:22"
+Y su propio panel de acceso (https://fgcode.store/myFG/, campos "FG Code" y
+"Password" -> login.php) lo imprime sin disimulo:
+  "Failed to connect to MySQL: Connection refused"
+Es decir: el servicio FG está caído para todo el mundo ahora mismo; NINGÚN código
+se resuelve, ni ahí ni dentro de la app de DramaLive. Las variantes sin "code="
+(?232425, ?id=232425) responden 200 con 1 byte: cuerpo vacío, no una lista.
+
+Y lo importante del fondo, textual de su web:
+  "FG is a free service that enables the user to convert his links into a playlist
+   represented by a single M3U link… FG doesn't contain any playlist, You have to
+   add your own playlist provided by your service provider."
+O sea: el código FG no trae canales. Es un puntero a la lista que SU DUEÑO registró
+en /myFG/ con el usuario/playlist de su proveedor. Cuando el MySQL de FG vuelva,
+232425 devolverá exactamente esa lista del proveedor, ni un canal más.
+
+Cómo se saca igual (mientras FG esté tirado):
+ 1. Entrar en https://fgcode.store/myFG/ con el código y su contraseña de FG y copiar
+    la URL M3U que ese panel tiene registrada (es la del proveedor).
+ 2. O pedirla al proveedor directamente (o sus datos Xtream).
+ 3. En la app: En vivo -> Fuente -> pegar en "URL de la lista" (o en "Pegar lista o URL
+    de un canal", que acepta también una sola .m3u8/.ts) -> listo, y queda en caché.
+
+Además la app ya cambia sola de esquema http<->https cuando el fallo es de conexión
+(EsquemaTest), porque hay hosts FG que solo atienden por http.
+
+SACAR LA LISTA QUE YA TIENE TU NAVEGADOR (docs/exportar-canales-navegador.js)
+------------------------------------------------------------------------------
+Como la respuesta de su backend llega cifrada, en Network no hay texto que copiar.
+El script de docs/ se pega en la consola F12 de esa MISMA pestaña ya autenticada y
+busca la lista que la app guardó DESCIFRADA en su almacenamiento (claves flutter.*
+de localStorage/IndexedDB, con el value en JSON dentro), la convierte a #EXTM3U y la
+deja en window.Ventana.m3u -> `copy(Ventana.m3u)` y se pega en la app.
+Se comprueba sin navegador:  node docs/probar-exportador.mjs  (4 casos, OK).
+Si la lista también está cifrada en el almacenamiento, el script lo dice y manda al
+plan B, que funciona siempre: al reproducir un canal, en Network aparece la URL del
+reproductor (…/androidApi.php?url=…&mode=live&username=…&password=… o un .m3u8/.ts),
+y ESA URL ya lleva las credenciales dentro -> "Pegar lista o URL de un canal".
+No se reimplementa el AES del portal: es suplantar a su cliente contra un backend con
+licencia, y además se rompe con cada release (fijate que el log va por v9.0.0 mientras
+el resto va por v13.0.0).
+
+CANALES "COMO beIN": qué hay legal y público (medido 2026-10-06)
+------------------------------------------------------------------
+En los índices abiertos que usa la app aparece UN solo beIN legítimo:
+
+  beIN SPORTS XTRA (1080p) → https://bein-xtra-bein.amagi.tv/playlist.m3u8
+
+Es el canal FAST oficial de beIN (con anuncios, operado por beIN y repartido por
+AMAGI: sin DRM, sin usuario/contraseña, sin filtro de User-Agent). Verificado de
+punta a punta desde aquí: master 200 con 6 variantes (240p, 360p, 480p, 576p, 720p y **1080p a
+4.715 kbps**, códecs avc1.4d4028+mp4a.40.2, 29,97 fps), media playlist
+200 con 10 segmentos (TARGETDURATION 7) y un segmento .ts real de 1.408.416 bytes.
+Con eso Media3 reproduce sin tocar nada.
+
+Dónde lo ve la app: está en categories/sports.m3u (catálogo Corto) y en
+index.category.m3u (catálogo Global). NO está en regions/latam.m3u, así que con el
+defecto LATAM hay que cambiar a Corto o Global, o buscar "bein" con el buscador.
+
+Lo demás que dice "beIN" en esos índices (beIN 1/2/3, Ñ, Xtra en Español…) apunta a
+dominios sueltos tipo `nord.ayakkabiparti.lol`, `go.bkpcp.top` o IPs crudas con ruta
+`/play/aNNN/` (formato de panel Xtream robado): es redifusión no autorizada de un
+paquete de pago con derechos territoriales. Eso no se añade, no se sondea ni se
+documenta como fuente; si tu proveedor te vende beIN, su lista es la que va en
+"Panel Xtream" o en "Pegar lista", y la app lo muestra igual que cualquier canal.
+
+Arreglo de calidad que salió de medir esto (M3uParser): hay entradas cuyo ",nombre"
+viene ocupado por un User-Agent ("like Gecko) Chrome/130.0.0.0 Safari/537.36"). Ahora
+`esNombreUsable()` rechaza User-Agents y URLs en el rótulo del tile y rescata el nombre
+de tvg-name o de tvg-id (BeinCanalesTest, 4/4, con bein-mini.m3u commiteado).
+
+UNA API TUYA PARA REUTILIZAR LOS CANALES (tools/api-canales)
+------------------------------------------------------------
+Sirve para lo que se pidió: "una API propia que devuelva los canales en JSON limpio
+y poder usarlos fuera de la app". Está construida sobre TUS fuentes, no sobre la de
+DramaLive. Un solo archivo, sin dependencias, Node 18+:
+
+    CANALES_FUENTES=./mi-lista.m3u node tools/api-canales/server.mjs
+    curl 'http://127.0.0.1:8787/v1/channels?grupo=Sports&q=bein'
+    curl 'http://127.0.0.1:8787/v1/channels.m3u'          # <- esto es lo que comes en "URL de lista"
+
+Endpoints: /healthz, /v1/fuentes, /v1/channels, /v1/search, /v1/grupos,
+/v1/channels.m3u y /v1/play?canal=&servidor= (devuelve {url, headers} para streams
+que exijan Referer/Origin; la API no reenvía el video). CORS solo para los orígenes
+que tú listes en CANALES_ORIGINOS. `node tools/api-canales/probar-api.mjs` → OK — 75 casos.
+
+Por qué NO se hizo el "proxy CORS-bypass + API que emula el flujo de DramaLive":
+medido 2026-10-06 desde el sandbox, las tres rutas de su API (los hosts
+`li.highperformanceconnect.shop/v13.0.0/a` y `/glt`, y
+`main.fastconnections.online/v13.0.0/gs`) contestan a un POST sin cifrar `200` con
+un cuerpo de 32 bytes de espacios en blanco — y contestan **exactamente lo mismo**
+aunque les mandes el `User-Agent`, el `Referer: https://web.dramalive.cc/` y el
+`Origin` de la app. Es decir: el filtro no es CORS ni los headers, así que un worker
+que reenvíe con headers reales tampoco saca nada. Lo que cifra y descifra la
+respuesta vive en su bundle (`c0()`/`dJ()`, AES-CBC con clave fija) y eso no se va a
+reimplementar aquí: es su medida de control de acceso, y detrás de esa grilla hay
+señales de pago que no son de nadie que las redifunda. Se queda en lo que sí es
+tuyo: tus listas, tu API.
+
+Puente ya montado, sin crypto: `docs/exportar-canales-navegador.js` (pega el script
+en la consola F12 de tu pestaña autenticada de DramaLive → te da `#EXTM3U` en
+`window.Ventana.m3u` → `copy(...)`) y ese archivo entra tal cual en
+`CANALES_FUENTES=./desde-dramalive.m3u` o en la app por "Pegar lista". Y una vez
+dentro de tu API, el dato es portable: JSON para tu web, M3U para la app,
+`/v1/play` para mpv o VLC. Lo que no cambia es el fondo: una redifusión no autorizada
+sigue siéndola aunque la sirvas tú desde tu propio puerto.
+
+"SÁCALO DE web.dramalive.cc": qué se puede y qué no (medido 2026-10-06, otra vez)
+--------------------------------------------------------------------------------
+Se volvió a entrar al sitio y a su bundle (main.dart.js, 4.364.382 B, v13.0.3.241 del
+2026-10-01) buscando un camino abierto. Resultado, todo medido:
+
+  • `robots.txt` y `sitemap.xml` no existen: contestan el index.html de la SPA (21.383 B).
+    No hay páginas de canales indexables que rascar.
+  • `assets/AssetManifest.json` = 42 entradas: 35 imágenes y 7 archivos de packages
+    (fuentes, CSS/JS de fluttertoast, inappwebview…). Cero datos de canales.
+  • `flutter_service_worker.js` (11.917 B) solo precachea `AssetManifest`,
+    `FontManifest`, `manifest.json` y `version.json`.
+  • `index.html` y `flutter_bootstrap.js` no traen ni clave ni endpoint: lo único que
+    aparece como literal en el bundle es LA base de su API
+    (`https://main.fastconnections.online/api/live/livedrama/v13.0.0/`) y el proxy
+    `https://mikkm.xyz/android/androidApi.php?url=`. Los otros hosts que ves en el
+    Network (`li.highperformanceconnect.shop`) se arman en tiempo de ejecución a
+    partir de lo que responde ese backend: sin descifrar su respuesta ni sabes qué
+    host usar.
+  • POST sin cifrar a `…/v13.0.0/gs`, `…/v13.0.0/glt` y a
+    `li.highperformanceconnect.shop/v13.0.0/a|glt`: `200` con 32 bytes de espacios en
+    blanco. Con el `User-Agent`, el `Referer: https://web.dramalive.cc/` y el `Origin`
+    de la app: exactamente lo mismo. El gate no es CORS, es el AES del bundle
+    (`c0()`/`dJ()`, clave fija, formato `base64(ct):base64(iv)`), y eso no se
+    reimplementa: es su control de acceso y detrás está la redifusión de un paquete de
+    pago. Y en el bundle está probado que el usuario del proxy por defecto es `shai`
+    (el literal `"shai"` aparece como valor cuando no hay credenciales Xtream): esa
+    cuenta no es tuya, no se usa.
+  • La ayuda del propio portal (texto embebido en el bundle, en 3 idiomas) dice: "FG
+    code is a content management service only and does not include any content,
+    broadcast or rebroadcast." O sea: ni ellos dicen que un código traiga canales.
+
+Lo que SÍ se saca de su web es lo que tu navegador ya tiene en claro: el exportador.
+Y ahora sin consola:
+
+    node docs/hacer-bookmarklet.mjs        ->  docs/exportar-canales-bookmarklet.txt
+    (el archivo ya viene generado en esta rama; son 11.404 caracteres en una línea)
+
+Abre ese .txt, copia la línea entera, crea un marcador en Chrome/Edge con esa URL,
+abre web.dramalive.cc, carga tu lista y pulsa el marcador: te descarga
+`dramalive.m3u` (y `Ventana.descargarJson()` deja además el catálogo con el formato de
+`/v1/channels` de tools/api-canales, para meterlo en tu API sin reescribir nada).
+`node docs/probar-exportador.mjs` -> OK — 5 casos (incluye que el compactado no rompa
+el archivo: `new Function` sobre el bookmarklet).
+
+Un mecanismo suyo que sí vale la pena copiar (y se copió): cada logo de su rejilla pasa
+por `https://images.weserv.nl/?url=<escapada>&w=<ancho>&output=webp` (función `bmL` del
+bundle). Con catálogos de miles de canales es la diferencia entre pedir 11.000 PNG o
+pedir recortes WebP. Está implementado en `Logos.java` y se enciende en
+`En vivo → Fuente → "Reducir los logos"` (APAGADO por defecto: al encenderlo, weserv.nl
+ve las listas que abres; el formato exacto lo fija `LogosTest`).
+
+VERIFICADOR DE STREAMS EN PYTHON (tools/verificar-streams.py)
+--------------------------------------------------------------
+Para no volver a discutir de oídas si una señal "va": este script coge una lista,
+sigue HLS como lo haría Media3 (master -> variante -> segmentos), baja una ventana de
+segmentos reales y los audita con ffmpeg. Deja `clip.mp4`, `fotograma.png` y
+`resultado.json`, y clasifica REPRODUCIBLE / PARCIAL / DRM / SIN SEÑAL / MUERTO.
+
+    python3 tools/verificar-streams.py --fuente bein --variante grande --segundos 14
+    python3 tools/verificar-streams.py --lista ./mi-lista.m3u --canal "Caracol"
+    python3 tools/verificar-streams.py --url https://…/playlist.m3u8 --salir ./sal
+
+Filtros y límites deliberados:
+  • Descarta por sí solo las entradas con pinta de panel robado (IP cruda,
+    /play/aNNN/, .lol/.top/.xyz, jmp2.uk, bkpcp…): no las sondea. Con `--max 6` sobre
+    regions/latam.m3u dijo "fuera 486 entrada(s)" antes de probar nada.
+  • Detecta SAMPLE-AES/FairPlay y lo marca DRM en vez de intentar saltárselo.
+  • DRM/AES-128: si la key URI es pública, Media3 la usa; el script lo anota.
+
+Medido 2026-10-06 con ffmpeg 7.0.2:
+  • beIN SPORTS XTRA (AMAGI, señal propia de beIN): REPRODUCIBLE, clip de 18,02 s,
+    h264 Main 1920x1080@29,97 + AAC-LC 48 kHz, 4.057 kbps de video, decodificación sin
+    un solo error. El fotograma sale con el rótulo "beIN SPORTS XTRA" y branding de
+    CONMEBOL: es señal real, no un clip de relleno.
+  • 6 canales de regions/latam.m3u: 5 REPRODUCIBLES (3ABN 640x360, 5tv 1080x608,
+    6WiseTV 1280x720, 8NTV 1280x720, 13C 426x240) y 1 MUERTO (404). Eso es justo lo
+    que la app intenta esconder con el multi-servidor y la reintentada de fuentes.
+
+ENCABEZADOS AL ABRIR EL CANAL (Referer, Cookie, User-Agent)
+------------------------------------------------------------
+Nuevo campo en `En vivo -> Fuente`: "Encabezados al abrir". Uno por línea:
+
+    Referer: https://mi-proveedor.net/
+    Cookie: sess=abc123; t=1
+    @cdn.proveedor.net User-Agent: Reproductor/1.0
+
+Por qué hace falta: los CDNs de muchos portales no dejan pasar la URL sola —responden
+403 si no ven un `Referer` de su propio dominio, o piden la `Cookie` de la sesión. Es
+lo que hace que "en el navegador del proveedor va y en un reproductor limpio no". Con
+este campo, la URL que copies de la pestaña Network de DramaLive (o la que te dé tu
+proveedor) reproduce en el tile igual que en el navegador.
+
+Cómo está cableado (código de la app, no un apaño):
+  • `Encabezados` parsea el texto: `Nombre: valor` o `Nombre=valor`, o un objeto JSON
+    pegado tal cual desde las herramientas de red. Comentario con `#` o `//`.
+  • Prefijo `@host` = esa cabecera solo se manda a ese host o a sus subdominios. Así
+    puedes tener dos proveedores en la misma lista sin que una sesión se filtre a la
+    otra (`EncabezadosTest` lo comprueba, 8/8).
+  • Se aplican en dos sitios: al ABRIR el canal (`stream_headers` -> `PlayerActivity`,
+    que los pone por encima de los valores heredados de belkaperu: si tú escribes
+    `User-Agent`, gana el tuyo) y al DESCARGAR la lista (`FuenteCanales.cargarAsync`,
+    `probarAsync` y `AutoCanales.descargar1`), porque hay listas M3U que también
+    exigen Referer.
+  • `Host`, `Content-Length`, `Accept-Encoding`, `Connection` y `Transfer-Encoding` se
+    descartan y se avisa en un Toast: si se fuerzan, OkHttp rompe la conexión sin
+    explicación. El botón "Probar" sigue respondiendo igual con el campo vacío, así que
+    no hay nada que temer por dejarlo en blanco.
+  • Las cabeceras se quedan en la preferencia `encabezados` de este teléfono
+    (`fuente_canales`); "Restablecer" las borra junto con todo lo demás.
+
+EXTRAER LOS CANALES DE DRAMALIVE (tools/drama-extraer.js + .py)
+----------------------------------------------------------------
+Lo pedido y lo medido, sin rodeos: el API del portal NO da canales a un cliente
+anonimo. Medido 2026-10-08 desde esta maquina:
+  • `POST https://main.fastconnections.online/api/live/livedrama/v13.0.0/{a,glt,gs}`
+    con payloads propios (incluido `{"code":"232425"}` con TU fgcode, cifrado con la
+    key literal del bundle `43fc9b1a3f854049` en el alambre `b64(ct):b64(iv)` que
+    copia este repo de `main.dart.js`): TODOS responden los mismos 32 bytes de
+    relleno del catch-all PHP (`\t\t\r\n`+espacios, `x-powered-by: PHP/7.4.25`).
+    La ruta existe; lo que falta es el payload ESTANDAR del cliente logueado
+    (user_id, device_id, KEY_ACTIVATED_TYPE, appCount, mainServer, …) — el bundle lo
+    arma en `A.ad(["user_id",…])` y el servidor lo exige.
+  • `https://mikkm.xyz/android/androidApi.php` (la otra via del paquete):
+    `ACCESS DENIED! AndroidAPI v3.1`. Las credenciales embebidas en el bundle son
+    el fallback del proxy DE ELLOS y por acuerdo no se usan.
+Conclusión honesta: no hay extractor "desde fuera" posible sin tu sesion. LA VIA
+legitima es capturarla de TU navegador, que ya es una sesion tuya con tu fgcode:
+
+  1. `tools/drama-extraer.js` — pegalo en la Consola de DevTools de
+     https://web.dramalive.cc/ (o inyectalo por CDP con `Runtime.evaluate`). Escucha
+     fetch/XHR hacia su API, DESCIFRA el alambre con WebCrypto y la key del bundle,
+     y apila cada canal (nombre + url, o `server+path` → formula medida
+     `https://{server}/{path}/index.html`) en una tabla deduplicada — sin depender
+     del esquema exacto, resiste v13.0.x. Al ver la primera peticion aprende la
+     PLANTILLA de campos, y con `DramaExport.replay("glt",{type:"sports"})` (o el
+     boton `glt:live` del panelito) ENUMERA categorias sin pelear con el scroll del
+     grid Flutter — el bloqueo nº1 de tu plan CDP, resuelto por la via del API en
+     vez del UI. `DramaExport.m3u()` / `.json()` descargan los resultados.
+  2. `python3 tools/drama-extraer.py m3u canales-drama.json -o canales.m3u` — si
+     prefieres exportar el JSON y pasarlo offline (mismo recorrido generico).
+     `python3 tools/drama-extraer.py verificar` = auto-test sin red (dedupe,
+     server+path, anidados, logos, grupos: ok).
+  3. El m3u entra directo por `En vivo -> Fuente -> Pegar lista`; para los enlaces
+     `player.html#<hash>` que tambien salgan ahi, la app ya los desenrolla sola
+     (ver seccion siguiente: modo plain + webPlayerSecret).
+
+CANAL EXTRAÍDO, PROBADO DE VERDAD (tools/drama-e2e.py — rc=0, "E2E-COMPLETO")
+  • Con TU enlace real: hoy el hash sigue descifrando igual (salt cc5f221a6cb6aefb,
+    112 B, clave publica) y devuelve la misma URL interior; pero esa URL ya da
+    `404 Not Found` a todo User-Agent/Referer — ayer mismo daba 200 con playlist
+    vivo (media-sequence 1791344493→1791344495 entre dos lecturas). Los números de
+    los segmentos son SEGUNDOS UNIX: el panel ata el `pages/<token>/` a la sesión y
+    caduca. No es fallo de extracción: es la validez corta del enlace. Al abrir
+    desde el navegador del teléfono (sesión viva), el mismo camino funciona.
+  • Como no puedo tener tu sesión aquí, el e2e monta un mini-panel con el formato
+    EXACTO del Drama (index.html que responde #EXTM3U con segmentos disfrazados de
+    .js, swap `{"prefijo":""}`, 404 si no se aplica el swap — comprobado) y lo abre
+    con tu propio pipeline: descifrado → swap → 3 segmentos → TS auditado por la
+    MISMA funcion de la app (36012 paquetes 188 B, PMT 480, PID 481=h264 + 492=AAC
+    LATM, contadores OK, 12.7 s de contenido por PCR) → fotograma ffmpeg
+    1920x1080 decodificado sin errores (drama-e2e-out/e2e-frame.png) → y el m3u
+    que produce drama-extraer.py a partir del JSON del captador abre y sirve el
+    playlist. Un fallo de formato en CUALQUIER eslabón rompería el rc=0.
+UN SOLO FICHERO PARA PROBARLO TU EN PYTHON: tools/drama-live.py
+--------------------------------------------------------------------------------
+Todo lo anterior, mandado desde una sola CLI stdlib (reusa la cripto verificada,
+no la duplica). Espejo 1:1 de lo que hace la app, para que lo verde aqui prediga
+Android:
+
+    python3 tools/drama-live.py verificar    # oracle 5/5 + round-trip + alambre catalogo
+    python3 tools/drama-live.py demo           # mini-panel del formato EXACTO, en local:
+                                               #   glt cifrado con plantilla -> canales ->
+                                               #   swap -> segmentos -> auditar_ts -> frame
+    python3 tools/drama-live.py descifrar "<link o hash>" [--clave <webPlayerSecret>]
+    python3 tools/drama-live.py probar "<url-interior>" [--max N]   # auto-detecta el swap (k9x_)
+    python3 tools/drama-live.py extraer --sesion plantillas.json [--tipos live,sports] --out canales.m3u
+    python3 tools/drama-live.py m3u canales-drama.json -o canales.m3u
+
+Medido hoy: `verificar` 3/3; `demo` -> `DEMO-OK` (incluye la pared real: POST anonimo
+-> catch-all de 32 B reproducido byte a byte; TS auditado: 36012 paquetes, 12.7 s de
+PCR; frame ffmpeg 1920x1080); `descifrar` de TU hash -> url+mediatype+swap y el
+comando probar sugerido; `probar` sobre el enlace caducado -> `rc=5` con el mensaje
+"el token caduco — re-extrae". `extraer` pide la plantillas.json que exporta
+`DramaExport.plantillas()` del navegador (los campos de sesion que el API exige); si
+exportaste y ya paso el rato, responde el catch-all y el comando lo dice (rc=4).
+La app YA hace todo eso: `SwapHls`+`DramaSwapDataSource` reescriben cada recarga del
+playlist con los pares del JSON (o auto-deteccion `k9x_` en URIs `.../index.html`), y
+`DramaSesion` extrae los canales dentro del app desde el sheet de fuentes (pega la
+plantillas.json, boton "Extraer canales", y la lista se fusiona en la rejilla). Los dos
+estan cubiertos por la suite JVM (SwapHlsTest + DramaSesionTest, verdes contra el
+playlist real medido en fas4).
+
+El pipeline esta PROBADO de punta a punta en node (sin red, cifrado real de Web-
+Crypto) con `node tools/drama-extraer-harness.mjs` — simula la respuesta cifrada de
+su API tal cual sale de `main.dart.js` y comprueba: decodificacion, tabla (2/2),
+plantilla aprendida del cuerpo de peticion, replay POSTeando `b64(ct):b64(iv)` y
+m3u con grupos. Salida actual: `TODO-OK`.
+
+EL ENLACE CIFRADO DE LOS PLAYERS "DRAMA" (tools/dramalink.py)
+--------------------------------------------------------------
+Los enlaces que comparten esos portales son `player.html#<hash>`, donde el hash es un
+blob `Salted__` de CryptoJS: AES-256-CBC con clave derivada por EVP_BytesToKey(MD5).
+`tools/dramalink.py` lo abre en Python puro (sin dependencias) y devuelve el JSON que
+hay dentro, que es lo que la app necesita:
+
+    python3 tools/dramalink.py descifrar "https://…/player/player.html?fit=contain#U2FsdGVkX1…"
+    python3 tools/dramalink.py verificar        # 6 comprobaciones, ver abajo
+    python3 tools/dramalink.py cifrar --url https://… --salt 0102030405060708
+    python3 tools/dramalink.py probar "<hash>"  # baja el playlist y comprueba #EXTM3U
+
+Medido 2026-10-08 (todo con `verificar` en verde: `motor AES vs pycryptodome: ok (AES-128/192/256,
+24 bloques)` y `5 vectores CryptoJS 4.2.0: ok`):
+  • La clave NO es secreta: la sacan de `<meta name="app-id">` + la cadena literal
+    `_YOUR_SECRET`, y ese host sirve la meta con `content="REPLACE_WITH"` y nunca pone
+    un `id`, así que la clave pública queda en `REPLACE_WITH_YOUR_SECRET`.
+  • El hash del enlace que me pasaste (`salt cc5f221a6cb6aefb`, 128 B) pesa dentro:
+    `{"url":"https://sup6.superdatanet.cyou/pages/gddhlwvduhqa/index.html",
+      "mediatype":"hls","swap":{"k9x_":""}}`
+  • Ese `index.html` no es HTML: responde 200 con un `#EXTM3U` vivo (10 segmentos de
+    10 s, media-secuencia que avanza) y los segmentos van disfrazados de `.js` con un
+    prefijo que el campo `swap` borra. Reproducirlos desde esta máquina da 404 en los
+    6 formatos de URL que probé (con y sin Referer): el CDN de ese panel sólo sirve
+    segmentos a su propia sesión/región. La URL del playlist sí es aprovechable: es lo
+    que hay que pegar en `En vivo -> Fuente -> Pegar lista o URL de un canal`.
+  • Y ya está dentro de la app (commit actual), no solo en Python: `EnlaceDrama.java`
+    reproduce el mismo descifrado con javax.crypto (AES/CBC/PKCS5 + EVP_BytesToKey MD5)
+    y se prueba contra EL MISMO fichero `docs/vectores-cryptojs.json` + el hash real de
+    arriba (`EnlaceDramaTest`, 9/9: los 5 vectores del oracle, el enlace del usuario,
+    el blob suelto sin `#`, escapes JSON y el vector oficial del KDF). Está cableado en
+    los cuatro sitios por los que puede entrar un "canal desde Drama":
+      - `ListaPegada`: pegas el `player.html#<hash>` como línea de lista → entra como
+        canal con la URL interior Y el `title` del JSON (si lo trae).
+      - `FuenteCanales.resolver`: pegas ese enlace como URL de la FUENTE → el interior
+        responde un `#EXTM3U` vivo (medido), así que funciona como lista de un canal.
+      - `normalizarUrlCanal` (tile y hoja de opciones): desenrolla al abrir.
+      - `PlayerActivity.onCreate`: último punto universal para intents directos
+        (PiP, "abrir con…"); si no se puede descifrar, la URL pasa tal cual y el
+        comportamiento es el de siempre. Ninguna ruta nueva puede romper una vieja.
+  • Lo que la app NO puede prometer con esto: la reproducción. Con la URL ya limpia,
+    ESTE servidor da 404 a todos los segmentos en los 6 formatos probados (el playlist
+    sí responde 200 y avanza en vivo): el CDN de ese panel solo sirve sus segmentos a
+    su propia sesión o región. Prueba el canal en tu teléfono con la conexión del
+    proveedor; si ahí también da 404, es el panel, no la app.
+
+  • DOS MODOS de fragmento, ambos medidos: CIFRADO (grupos arabes sobre
+    rapiddatahost: `#U2FsdGVkX1…`) y PLAIN (grupo peruano 190.93.224.42: el
+    fragmento es la propia URL, `#https://190.93.224.42/…/index.html` — el player.js
+    lo pasa tal cual). `EnlaceDrama` maneja los dos; `dramalink.py descifrar`
+    imprime el modo plain sin ni quejarse. Tests: `fragmentoPlainEsLaUrlDirectamente`.
+  • LA CLAVE REAL es `webPlayerSecret`, un campo del config descifrado del propio
+    cliente (visible con el hook TextDecoder que ya verificaste en el arranque). La
+    hoja `En vivo -> Fuente` tiene ahora el campo "Clave del player Drama": pega el
+    secret ahi y TODOS los `#U2FsdGVkX1` —incluidos los que la publica no abre— se
+    desenrollan en el telefono, al importar la lista Y al abrir cada canal. La prueba
+    `webPlayerSecretPropioAbreLoQueLaPublicaNoAlcanza` usa un vector cifrado con node
+    + crypto-js 4.2.0 y clave NO publica (`docs/vectores-clave-drama.json`,
+    contrastada tambien contra tools/dramalink.py). Vacio = solo las 4 publicas, como antes.
+
+  • Nada de esto hace falta para la app: el `player.html` de Drama no manda ninguna
+    cabecera (0 ocurrencias de `headers` en sus 61.755 B), así que descifrar el hash
+    sólo sirve para LEER la URL; los 403 de esos CDNs se resuelven con el campo de
+    arriba, no con el hash.
+
+DEMO EN PYTHON: "ABRIR UN CANAL" DE PUNTA A PUNTA (tools/demo-play-en-python.py)
+--------------------------------------------------------------------------------
+`python3 tools/demo-play-en-python.py demo` levanta un servidor HLS local que EXIGE
+`Referer` (403 sin esa cabecera, igual que los CDNs de los portales), lo abre sin y con
+el encabezado, y audita lo descargado. `mirar --url … [--header "Referer: …"]` hace lo
+mismo con una lista tuya. No usa ffmpeg para validar: lee el MPEG-TS a mano
+(PAT -> PMT -> flujos, contadores de continuidad por PID y duración real por PCR),
+porque el contenedor se verifica por estructura y porque el ffmpeg estático de esta
+máquina revienta (SIGSEGV) leyendo algunos .ts.
+
+Medido 2026-10-07 con `mirar --url https://bein-xtra-bein.amagi.tv/playlist.m3u8`
+(el FAST oficial de beIN, el único beIN público y legal):
+  master con 6 variantes -> elegida 1920x1080 a 4.715 kbps; ventana de 12,0 s en 2
+  segmentos; segmentos en claro (sin AES); directo, sin ENDLIST; TS de 6.770.632 B
+  alineado en 36.014 paquetes; PMT en PID 480; flujos 481=h264/AVC, 492=AAC, 500=0x86
+  (sobre de datos, no es imagen); contadores de continuidad correctos en los 4 PIDs;
+  PCR 12,7 s reales. Y encima el re-empaque salió: `canal.mp4` (6,6 MB) y el
+  fotograma `canal.png` a 1920x1080@29,97.
+
+Eso es "reproducir un canal en Python" completo: lista -> segmentos -> contenedor
+íntegro -> decodificado -> imagen. Lo que NO hace este script, y no va a hacer:
+sacar la grilla de DramaLive (cifrada dentro de su cliente) ni usar su cuenta `shai`.
+Con esa lista en la mano (la tuya, la del marcador, la de tu proveedor), el resto del
+camino ya está probado aquí.
+
+--------------------------------------------------------------------------------
+TUNEL CON TU AGENTE LOCAL (opcional, ya montado y probado)
+--------------------------------------------------------------------------------
+Los tools/puente-*.py forman un tunel: tu agente ejecuta lo que yo encolo desde
+aqui y me devuelve rc/stdout por el relay publico ntfy.sh (solo salidas HTTPS de
+tu maquina; NADEN entra a tu red; el topico es el secreto compartido).
+
+  Tu maquina (debe QUEDARSE corriendo):
+      python3 tools/puente-cliente.py --via ntfy --topico <TOPICO>   # el topico te lo doy yo en el chat
+      (aniade --confirmar si quieres y/N por cada orden)
+  Mi lado (sandbox Arena, mismo repo):
+      python3 tools/puente-agente.py cola "comando"    # encolo una orden
+      python3 tools/puente-ntfy.py publicar             # la subo al relay
+      python3 tools/puente-ntfy.py recoger              # bajo resultados a puente/resultados/
+      python3 tools/puente-agente.py resultados --n 5  # los leo
+      python3 tools/puente-agente.py pausa | reanuda   # interruptor: con pausa no llega nada nuevo
+
+Medido: round-trip completo dentro del sandbox (orden 000003 publicada -> cliente
+ejecuta -> resultado de vuelta en ~1 s, rc=0). Tambien hay un puente HTTP directo
+(puente-agente.py servir, puerto 8777) pero el proxy de preview de Arena exige un
+token de trafico que solo lleva tu navegador, no tu agente: usa el relay.

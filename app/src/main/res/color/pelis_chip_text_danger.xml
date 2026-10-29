@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- "Limpiar": rojo discreto, más intenso al pulsar/seleccionar. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/pelis_live" android:state_pressed="true" />
+    <item android:color="@color/pelis_live" android:state_selected="true" />
+    <item android:color="@color/pelis_red" />
+</selector>

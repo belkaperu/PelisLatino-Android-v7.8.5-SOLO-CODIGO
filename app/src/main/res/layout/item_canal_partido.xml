@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fuente de un partido, dentro del acordeón de la agenda.
+     Antes se montaba un TextView "a mano" en PartidoAdapter (sin padding lateral,
+     sin ripple y con texto plano); ahora es una fila con ícono y states. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/space_1"
+    android:background="@drawable/channel_item_bg"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:minHeight="@dimen/touch_min"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/space_2"
+    android:paddingTop="@dimen/space_1_5"
+    android:paddingEnd="@dimen/space_2"
+    android:paddingBottom="@dimen/space_1_5">
+
+    <ImageView
+        android:layout_width="@dimen/icon_lg"
+        android:layout_height="@dimen/icon_lg"
+        android:contentDescription="@string/canales_titulo"
+        android:src="@drawable/ic_live_tv"
+        app:tint="@color/pelis_sport" />
+
+    <TextView
+        android:id="@+id/txtCanalPartidoNombre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_2"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="1"
+        android:textColor="@color/pelis_text"
+        android:textSize="@dimen/text_body"
+        tools:text="Directv Sports 1" />
+
+    <ImageView
+        android:layout_width="@dimen/icon_sm"
+        android:layout_height="@dimen/icon_sm"
+        android:contentDescription="@string/pelis_reproducir"
+        android:src="@drawable/ic_chevron_right"
+        app:tint="@color/pelis_text_disabled" />
+</LinearLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chip de filtro. Ya NO es "anillo de acento + texto de acento": en
+     web.dramalive.cc lo activo es un BLOQUE AZUL LLENO con el rótulo en blanco,
+     así que el texto tiene que seguir al fondo (si no, blanco sobre blanco). -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/pelis_ink" android:state_selected="true" />
+    <item android:color="@color/pelis_ink" android:state_activated="true" />
+    <item android:color="@color/pelis_text" android:state_pressed="true" />
+    <item android:color="@color/pelis_text_secondary" />
+</selector>

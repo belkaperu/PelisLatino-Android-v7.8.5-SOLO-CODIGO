@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://tools.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_wallpaper"
+    android:fitsSystemWindows="true"
+    tools:context=".Main">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Toolbar: fondo y tipografía vienen de Widget.Blabongo.Toolbar (tema). -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="6dp"
+            android:theme="@style/ThemeOverlay.Blabongo.Toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.PelisLatino.Popup"
+            app:titleTextAppearance="@style/TextAppearance.Blabongo.ToolbarTitle" />
+
+        <!-- v3.2.40: el contenedor del banner de Start.io fue eliminado
+             "por ahora" — el catalogo se queda con toda la pantalla. -->
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/pelis_surface"
+        android:fitsSystemWindows="true"
+        android:elevation="16dp"
+        app:elevation="16dp"
+        app:headerLayout="@layout/nav_header_main"
+        app:itemIconTint="@color/pelis_nav_item_icon"
+        app:itemIconSize="@dimen/icon_lg"
+        app:itemShapeFillColor="@color/pelis_nav_item_fill"
+        app:itemShapeAppearanceOverlay="@style/ShapeAppearance.Blabongo.NavItem"
+        app:itemTextAppearance="@style/TextAppearance.Blabongo.NavItem"
+        app:itemTextColor="@color/pelis_nav_item_text"
+        app:menu="@menu/activity_main_drawer" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

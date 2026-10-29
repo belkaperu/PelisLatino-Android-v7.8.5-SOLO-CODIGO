@@ -1,0 +1,7 @@
+#EXTM3U
+#EXTINF:-1 tvg-id="BeINSportsXTRA.us" tvg-name="beIN SPORTS XTRA" tvg-logo="https://i.amagi.tv/bein.png" group-title="Sports",beIN SPORTS XTRA (1080p)
+https://bein-xtra-bein.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="box1" tvg-name="" group-title="Movies",like Gecko) Chrome/130.0.0.0 Safari/537.36
+https://nord.ayakkabiparti.lol/box1/index.m3u8
+#EXTINF:-1 group-title="Sports",beIN SPORTS XTRA en Espanol (1080p)
+http://201.190.41.246:9060/play/a03y/index.m3u8

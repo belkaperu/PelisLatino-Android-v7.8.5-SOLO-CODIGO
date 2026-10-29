@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Marca HD/SERIE: relleno de acento con texto blanco encima. El degradado va
+     de #2196F3 a #1565C0 (no a #64B5F6) para que el blanco del rótulo pase de
+     3.1:1 a 5.7:1 en el extremo claro. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient android:angle="0" android:startColor="@color/pelis_primary" android:endColor="@color/pelis_primary_aa" />
+    <corners android:radius="@dimen/radius_badge" />
+</shape>

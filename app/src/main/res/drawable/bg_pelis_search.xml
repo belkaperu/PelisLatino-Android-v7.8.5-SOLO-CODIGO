@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Campo de búsqueda: PASTILLA de vidrio.
+
+     Dos medidas del sitio, no impresiones: (1) el campo es completamente
+     redondo — 52 px de alto en la barra de 56 px del escritorio, así que el
+     radio es la mitad de la altura; (2) su relleno es blanco al ~15 % sobre la
+     cabecera (#276877 medido sobre un fondo #024C5C). Antes era una pastilla
+     de 10 dp de radio con relleno opaco de superficie. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="#28FFFFFF" />
+    <corners android:radius="@dimen/radius_pill" />
+</shape>

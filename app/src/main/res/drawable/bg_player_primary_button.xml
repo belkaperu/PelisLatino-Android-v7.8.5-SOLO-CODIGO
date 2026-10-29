@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Play/pausa: el control principal va RELLENO de acento con el ícono en blanco,
+     igual que el bloque activo de la referencia (antes: círculo oscuro con
+     anillo cian). -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/pelis_ripple">
+    <item android:id="@android:id/mask">
+        <shape android:shape="oval">
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+    <item android:id="@android:id/background">
+        <shape android:shape="oval">
+            <solid android:color="@color/pelis_primary" />
+        </shape>
+    </item>
+</ripple>

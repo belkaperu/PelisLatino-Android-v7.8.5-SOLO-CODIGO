@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fila de lista oscura con ripple y resaltado al estar pulsada. -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/pelis_ripple">
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/pelis_card" />
+        </shape>
+    </item>
+</ripple>

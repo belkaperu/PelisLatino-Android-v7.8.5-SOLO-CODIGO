@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Controles del reproductor: degradado en vez de negro plano, botones de 44dp
+     con ripple circular y seekbar más fina. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/controls_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_player_controls"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/space_1_5"
+    android:paddingTop="@dimen/space_3"
+    android:paddingEnd="@dimen/space_1_5"
+    android:paddingBottom="@dimen/space_1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvTiempoActual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/space_1"
+            android:text="0:00"
+            android:textColor="@color/pelis_text"
+            android:textSize="11sp" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="1000"
+            android:paddingTop="@dimen/space_2"
+            android:paddingBottom="@dimen/space_2"
+            android:progressDrawable="@drawable/seekbar_progress"
+            android:splitTrack="false"
+            android:thumb="@drawable/seekbar_thumb" />
+
+        <TextView
+            android:id="@+id/tvTiempoTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/space_1"
+            android:text="--:--"
+            android:textColor="@color/pelis_text"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnRewind"
+            style="@style/Widget.Blabongo.PlayerButton"
+            android:contentDescription="@string/player_rewind"
+            android:src="@drawable/ic_rewind" />
+
+        <ImageButton
+            android:id="@+id/btnPlayPause"
+            style="@style/Widget.Blabongo.PlayerButton.Primary"
+            android:contentDescription="@string/player_play_pause"
+            android:src="@drawable/ic_play" />
+
+        <ImageButton
+            android:id="@+id/btnForward"
+            style="@style/Widget.Blabongo.PlayerButton"
+            android:contentDescription="@string/player_forward"
+            android:src="@drawable/ic_forward" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/btnVolume"
+            style="@style/Widget.Blabongo.PlayerButton"
+            android:contentDescription="@string/player_volume"
+            android:src="@drawable/ic_volume" />
+
+        <ImageButton
+            android:id="@+id/btnRefresh"
+            style="@style/Widget.Blabongo.PlayerButton"
+            android:contentDescription="@string/player_refresh"
+            android:src="@drawable/ic_refresh" />
+
+        <ImageButton
+            android:id="@+id/btnPip"
+            style="@style/Widget.Blabongo.PlayerButton"
+            android:contentDescription="@string/player_pip"
+            android:src="@drawable/ic_pip" />
+
+        <ImageButton
+            android:id="@+id/btnPantalla"
+            style="@style/Widget.Blabongo.PlayerButton"
+            android:contentDescription="@string/player_pantalla"
+            android:src="@drawable/ic_pantalla_completa" />
+
+        <ImageButton
+            android:id="@+id/btnCerrar"
+            style="@style/Widget.Blabongo.PlayerButton"
+            android:contentDescription="@string/player_close"
+            android:src="@drawable/ic_cerrar"
+            app:tint="@color/pelis_live" />
+    </LinearLayout>
+</LinearLayout>

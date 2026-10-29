@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Barra de herramientas: VELADURA teal, no un color plano.
+
+     Medido en el sitio: la barra superior rinde #025462 sobre un fondo que
+     arriba es #0A7E90. Eso es un negro-teal al ~40 % sobre el degradado. Al
+     dejarla translúcida, la cabecera del fragment (bg_header_cine) y la barra
+     forman una sola mancha continua, sin costura, que es lo que se ve en el
+     sitio; con un color opaco siempre queda un escalón. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient
+        android:angle="270"
+        android:startColor="#E6001A20"
+        android:endColor="#99001A20" />
+</shape>

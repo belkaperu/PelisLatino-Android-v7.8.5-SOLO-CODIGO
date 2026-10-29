@@ -1,0 +1,32 @@
+[
+ {
+  "texto": "{\"url\":\"https://bein-xtra-bein.amagi.tv/playlist.m3u8\",\"title\":\"beIN XTRA (demo)\"}",
+  "clave": "_YOUR_SECRET",
+  "salt": "0102030405060708",
+  "hash": "U2FsdGVkX1_0KTbgsGLRFY9dsXLUEDN51cylQEbImiuBErTOsOywzkkTETfXjb_TkmuWgRtylaIy4PpEpaG7IjUI8trv2lzbbdFQfEJYX7NSuZ5PV-2wtFI7rNDFa7LniO6i9JBSt2udqynI6xHZbw"
+ },
+ {
+  "texto": "hola",
+  "clave": "",
+  "salt": "aabbccddeeff0011",
+  "hash": "U2FsdGVkX18mY-L8EA6VmifRUBqE_vC6otyBkzCROYE"
+ },
+ {
+  "texto": "{\"url\":\"https://x/playlist.m3u8\",\"headers\":{\"Referer\":\"https://mi-proveedor.net/\",\"User-Agent\":\"Reproductor/1.0\"},\"ttl\":120}",
+  "clave": "REPLACE_WITH_YOUR_SECRET",
+  "salt": "ffffffffffffffff",
+  "hash": "U2FsdGVkX196BSP-qDGNFtzG6z1B6dx3zZowLLW7G9Kh-maoMNqRqnLnTy7pAVhSKbd_Gs3scY9t64Z52KQH-lReepWChcWCwchi9hviZ87n4Q-7yaki7kqA5CZi0233pqQxzaqBIsTAhnXzXGFVI6lmhbSRUxvFcoac3wWxiSwaWnPHhAf_rTa3iel7lTk0"
+ },
+ {
+  "texto": "ñ¿¡ — acentos y ✓ unicode en el título de prueba con texto algo más largo para cruzar varios bloques AES",
+  "clave": "9DFB77C0",
+  "salt": "1020304050607080",
+  "hash": "U2FsdGVkX19p8EG0AIneIxAMxKdo3VfUuDnJ8eB0FqKLA_jgEXkthlnxwNfodxqknuUilElUr8YVXAwo-M64YhICv-ouIOxb2yZRhu4PTVc5MteCyzNwpnNNX-wGes1Gi0iU5JKP1zCd8CXTcR58L7LYY-g2AEikHChvzQwTTqI8LhO80Zh3DmzttoI5IRfw"
+ },
+ {
+  "texto": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "clave": "dramalive",
+  "salt": "00112233445566ff",
+  "hash": "U2FsdGVkX1-5GBdE7sy2aWeWNEkZh7M9Lg_Xbd_fR7l7Ass-FwGik7ctQJ4I0mbUT1LpL6vPvj9wb7k18_ZI4PVDULICTn6WifsZVn9jOmWUYZIiKfMdG1MTJ1cojiTRgsku04ZPdwP90neFWf-SGx92sXs8oaYqTYcRXlLiDkNwaoSyy4rAobES-9qDGlViWKyhw1oy9oK2Yuty8bdvbJOw3-kBTxKKtAwVNmOhg7x_d2S0o9n7crZZg9dtHLncpMP03Ty6h6PZ1tZLNZAGG0WiCZuXPxxGmRIFLzSX51vvVce5CpqoxnFpAohBL3dk8sLfj5z57ps5XtKQYB_OuwHEVEuA4Mi2cjIxErSVkP-UxD-T_XjADcP3HiKL8xMMl8yWU1YESv_8jOFXmz4DxINz8LKtZgkgfC_ggAJrT3molJeIqzYTriQQtAND3nFooqhh6e6OOLex02dDj26yJFYJxesRMuhz-cQRV8bOg9SwPvKU4Oip77RjKuwGVDmwkgRtxYP905KJ_gg91rQxUuDJgGz6_1ytmYxReJP23GH7wBFKVAVu-ChYtd23HcZ7Y7UIY-XFM710m6f6QQ5egQscfCf7XXe1nQurhtGW70RKFUwZ0QBrvp7pn7WigMsyaLNOsZ031Grmc3wVSbC6velVsprLuEYQ2YR3MA2sfI-XmNxMB4I2-0TcSiYhiasP"
+ }
+]

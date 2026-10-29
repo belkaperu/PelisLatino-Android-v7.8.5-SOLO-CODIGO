@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Celda de la tira de categorías.
+
+     En reposo NO hay cuadro: el icono y el rótulo se apoyan directamente en el
+     fondo de la app. La activa es un bloque azul redondeado que envuelve icono y
+     rótulo, como en el Drama Live real (capturas ddd.JPG y drama-01.png, donde
+     "Most watched" se lee en blanco SOBRE el azul).
+
+     v9.7 (TV): se añade el estado FOCUSED. Con un mando no hay dedo que señale
+     dónde estás, así que la celda enfocada lleva un anillo blanco de 2 dp. Los
+     dos estados se combinan en la primera regla, para que la categoría activa
+     enfocada conserve el azul y además muestre el anillo. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Activa Y enfocada: azul + anillo blanco. -->
+    <item android:state_selected="true" android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/pelis_primary" />
+            <stroke android:width="2dp" android:color="@color/pelis_text" />
+            <corners android:radius="@dimen/radius_chip" />
+        </shape>
+    </item>
+
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/pelis_primary" />
+            <corners android:radius="@dimen/radius_chip" />
+        </shape>
+    </item>
+
+    <!-- Enfocada sin ser la activa: solo el anillo. -->
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/pelis_cyan_tint" />
+            <stroke android:width="2dp" android:color="@color/pelis_text" />
+            <corners android:radius="@dimen/radius_chip" />
+        </shape>
+    </item>
+
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/pelis_cyan_tint" />
+            <corners android:radius="@dimen/radius_chip" />
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+            <corners android:radius="@dimen/radius_chip" />
+        </shape>
+    </item>
+</selector>

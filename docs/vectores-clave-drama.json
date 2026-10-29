@@ -1,0 +1,9 @@
+[
+ {
+  "texto": "{\"url\":\"https://sp.highperformanceconnect.shop/sport/canal-01/index.m3u8\", \"title\":\"Grupo Arabe (vector prueba)\", \"mediatype\":\"hls\"}",
+  "clave": "SECRETO-PRUEBA-9F2C",
+  "salt": "5e60718293a4b5c6",
+  "hash": "U2FsdGVkX19eYHGCk6S1xts-HApEdeIX8zFIS7rzojMaViKdl0X3DtF3GGsujJ6ZdVdZlKagSQQWUYh6-lqs1FQQv6q1Dh3L217QEOYO59yFEgsAQKaWN52CDz0SGXsVfvcO0MIgh2MJT5FONeCdiEy_ZRv3BggkvxTSuoMdNBPchgmVRXglQIBoxKO6oiMbtCLkqWX9V0gVrhLV3np-SA",
+  "nota": "generado con node + crypto-js 4.2.0 (mismo KDF EvpKDF MD5x1) simulando un webPlayerSecret propio: ninguna de las 4 claves publicas lo abre; SOLO la clave extra lo hace. Prueba de EnlaceDrama.abrir(hash, clave)."
+ }
+]

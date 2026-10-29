@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Veladura del backdrop: oscura arriba (status bar legible) y funde con el fondo abajo. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient
+        android:angle="270"
+        android:startColor="@color/pelis_scrim_soft"
+        android:centerColor="#00001A20"
+        android:endColor="@color/pelis_bg"
+        android:centerY="45%" />
+</shape>

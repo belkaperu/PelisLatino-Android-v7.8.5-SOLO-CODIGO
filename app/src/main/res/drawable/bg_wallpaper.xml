@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fondo de la app, calcado de web.dramalive.cc.
+
+     Tres capas:
+       1. el degradado teal medido (arriba oscuro, meseta brillante al centro,
+          abajo oscuro otra vez);
+       2. los HALOS DE BOKEH, con <gradient type="radial">, que tienen borde
+          suave de verdad;
+       3. el confeti menudo (bg_confetti).
+
+     El bokeh estuvo dentro del vector, como anillos concentricos de color
+     plano. En el movil eso no se lee como desenfoque: se lee como discos
+     gigantes de amarillo, verde y rojo. Se vio en la captura del Galaxy A07
+     (recon-dramalive/out/canales-02.png). Aquí, en cambio, el degradado radial
+     de un <shape> difumina de verdad, y con alfa 8-12 % queda como una variacion
+     de color suave, que es lo que hace el sitio.
+
+     Esta capa la usan la ventana (bg_window_cinematic) NO — ese es solo el
+     degradado — y las pantallas que deben dejar ver el fondo. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 1. Degradado base, medido a lo largo de la columna de hueco entre tiles:
+           #067888 arriba, meseta #02AEC4 al centro, #01758D abajo. -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/pelis_wall_top"
+                android:centerColor="@color/pelis_wall_mid"
+                android:endColor="@color/pelis_wall_bottom" />
+        </shape>
+    </item>
+
+    <!-- 2. Halos. Son tres manchas grandes y muy transparentes, cada una
+           centrada en una esquina, como las luces desenfocadas del sitio. -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="16%"
+                android:centerY="10%"
+                android:gradientRadius="300dp"
+                android:startColor="#26FFD740"
+                android:endColor="#00FFD740" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="88%"
+                android:centerY="6%"
+                android:gradientRadius="260dp"
+                android:startColor="#1F69F0AE"
+                android:endColor="#0069F0AE" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="78%"
+                android:centerY="92%"
+                android:gradientRadius="320dp"
+                android:startColor="#248AF684"
+                android:endColor="#008AF684" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="6%"
+                android:centerY="72%"
+                android:gradientRadius="280dp"
+                android:startColor="#1AFF5BB1"
+                android:endColor="#00FF5BB1" />
+        </shape>
+    </item>
+
+    <!-- 3. Confeti menudo. -->
+    <item android:drawable="@drawable/bg_confetti" android:gravity="fill" />
+</layer-list>

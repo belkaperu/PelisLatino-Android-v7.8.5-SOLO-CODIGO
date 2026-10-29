@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chip en reposo: VIDRIO, no pastilla opaca.
+
+     En el sitio los chips no seleccionados no tienen relleno: se ve el fondo
+     difuminado a través y solo los separa un filete claro al 20 %. Con nuestro
+     degradado teal detrás, el mismo filete da el mismo efecto. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@android:color/transparent" />
+    <corners android:radius="@dimen/radius_chip" />
+    <stroke android:width="@dimen/stroke_hair" android:color="@color/pelis_glass_stroke" />
+</shape>

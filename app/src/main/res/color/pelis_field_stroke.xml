@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Borde del campo: vidrio en reposo (filete claro al 20 %, como los chips del
+     sitio), azul de acento al enfocar. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/pelis_accent" android:state_focused="true" />
+    <item android:color="@color/pelis_accent" android:state_pressed="true" />
+    <item android:color="@color/pelis_glass_stroke" />
+</selector>

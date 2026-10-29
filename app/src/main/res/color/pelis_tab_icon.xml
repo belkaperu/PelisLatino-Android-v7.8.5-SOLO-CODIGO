@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Icono de la categoría. En el sitio el glifo va BLANCO tanto en el cuadro
+     oscuro como dentro del bloque azul; lo que cambia es el fondo
+     (bg_canal_tab), no el color del icono. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/pelis_text" android:state_selected="true" />
+    <item android:color="@color/pelis_text" android:state_pressed="true" />
+    <!-- v9.7 (TV): el icono enfocado se enciende a blanco. Sin esto, con el mando
+         no se ve sobre qué categoría estás: en reposo el glifo es atenuado. -->
+    <item android:color="@color/pelis_text" android:state_focused="true" />
+    <item android:color="@color/pelis_text_secondary" />
+</selector>

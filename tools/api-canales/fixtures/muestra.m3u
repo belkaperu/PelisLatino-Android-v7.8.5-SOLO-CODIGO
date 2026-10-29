@@ -1,0 +1,14 @@
+#EXTM3U
+#EXTINF:-1 tvg-id="beINSportsXtra.us" tvg-name="beIN SPORTS XTRA (1080p)" tvg-logo="https://i.imgur.com/8Zh46FO.png" group-title="Sports",beIN SPORTS XTRA (1080p)
+https://bein-xtra-bein.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="box1" tvg-name="like Gecko) Chrome/130.0.0.0 Safari/537.36" tvg-logo="" group-title="Movies",like Gecko) Chrome/130.0.0.0 Safari/537.36
+https://nord.ayakkabiparti.lol/box1.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="Undefined",Canal Uno (720p)
+https://envivo.canaluno.com.ar/live/uno/index.m3u8
+#EXTINF:-1 tvg-id="cartoon.pe" tvg-name="" tvg-logo="" group-title="Kids;Family",Cartoon
+https://mi-proveedor.net:8000/live/usuario/clave/4001.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="Sports",Gol Perfume (SD)
+http://mi-proveedor.net:8000/live/usuario/clave/9001.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="Sports",Gol Perfume (HD)
+http://otro-host:8000/live/usuario/clave/9002.m3u8
+

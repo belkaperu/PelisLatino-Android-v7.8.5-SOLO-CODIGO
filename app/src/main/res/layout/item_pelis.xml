@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Card de póster del catálogo. La proporción 2:3 la fija PelisAdapter
+     (mantiene la relación sea cual sea el ancho de columna). -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Blabongo.Card.Poster"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgPelisPoster"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/poster_height"
+                android:background="@drawable/bg_pelis_poster_placeholder"
+                android:contentDescription="@string/contenido_poster"
+                android:scaleType="centerCrop" />
+
+            <!-- Veladura inferior: da contraste al año y "asienta" la card -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/bg_scrim_poster" />
+
+            <TextView
+                android:id="@+id/txtPelisRating"
+                style="@style/Widget.Blabongo.PillGlass"
+                android:layout_gravity="top|start"
+                android:layout_margin="@dimen/space_1_5"
+                android:background="@drawable/bg_pelis_rating"
+                android:textColor="@color/pelis_gold"
+                android:textSize="@dimen/text_micro"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:text="★ 7.8"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/txtPelisTipo"
+                style="@style/Widget.Blabongo.Badge"
+                android:layout_gravity="top|end"
+                android:layout_margin="@dimen/space_1_5"
+                tools:text="SERIE" />
+
+            <TextView
+                android:id="@+id/txtPelisAnio"
+                style="@style/Widget.Blabongo.PillGlass"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/space_1_5"
+                android:background="@drawable/bg_pelis_year"
+                android:textColor="@color/pelis_text_secondary"
+                android:textSize="@dimen/text_badge"
+                android:visibility="gone"
+                tools:text="2026"
+                tools:visibility="visible" />
+
+            <!-- v3.2.39: corazon de favorito — toque directo, no abre el detalle. -->
+            <TextView
+                android:id="@+id/btnFavPelis"
+                style="@style/Widget.Blabongo.PillGlass"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom|start"
+                android:layout_margin="@dimen/space_1_5"
+                android:background="@drawable/bg_pelis_year"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="♡"
+                android:textColor="@color/pelis_text_secondary"
+                android:textSize="15sp" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="66dp"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/space_1_5"
+            android:paddingTop="@dimen/space_1_5"
+            android:paddingEnd="@dimen/space_1_5"
+            android:paddingBottom="@dimen/space_2">
+
+            <TextView
+                android:id="@+id/txtPelisTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:minLines="2"
+                android:textAppearance="@style/TextAppearance.Blabongo.PosterTitle"
+                tools:text="Título de película bastante largo para probar el corte" />
+
+            <TextView
+                android:id="@+id/txtPelisSubtitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_0_5"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.Blabongo.Caption"
+                android:textSize="@dimen/text_micro"
+                android:visibility="gone"
+                tools:text="Acción · Ciencia ficción"
+                tools:visibility="visible" />
+        </LinearLayout>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

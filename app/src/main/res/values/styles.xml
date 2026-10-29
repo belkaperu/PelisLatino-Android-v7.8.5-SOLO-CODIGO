@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Padres base: Android resuelve el padre de un estilo por su nombre con
+         puntos (Widget.Blabongo.Tile ⇒ padre Widget.Blabongo), así que cada
+         familia necesita su nodo raíz explícito. -->
+    <style name="Widget.Blabongo" parent="" />
+
+    <style name="TextAppearance.Blabongo" parent="" />
+
+    <!-- ══════════════ TIPOGRAFÍA (Poppins) ══════════════
+         Una sola escala y una sola familia para toda la app. La familia sale de
+         @font/poppins (values/fonts.xml): se cambia en un punto. -->
+
+    <style name="TextAppearance.Blabongo.Display" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textSize">@dimen/text_display</item>
+        <item name="android:textColor">@color/pelis_text</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+
+    <style name="TextAppearance.Blabongo.Title" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textColor">@color/pelis_text</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Blabongo.Section" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textSize">@dimen/text_subtitle</item>
+        <item name="android:textColor">@color/pelis_text</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="TextAppearance.Blabongo.Overline">
+        <item name="android:textSize">@dimen/text_micro</item>
+        <item name="android:textColor">@color/pelis_accent</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.10</item>
+    </style>
+
+    <style name="TextAppearance.Blabongo.Body" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textColor">@color/pelis_text_secondary</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+    </style>
+
+    <style name="TextAppearance.Blabongo.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">@dimen/text_caption</item>
+        <item name="android:textColor">@color/pelis_muted</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="TextAppearance.Blabongo.Badge">
+        <item name="android:textSize">@dimen/text_badge</item>
+        <item name="android:textColor">@color/pelis_text</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.06</item>
+    </style>
+
+    <style name="TextAppearance.Blabongo.PosterTitle" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textColor">@color/pelis_text</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:lineSpacingExtra">1dp</item>
+    </style>
+
+    <style name="TextAppearance.Blabongo.Chip">
+        <item name="android:textSize">@dimen/text_caption</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="TextAppearance.Blabongo.TabLabel">
+        <item name="android:textSize">@dimen/text_caption</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
+    <style name="TextAppearance.Blabongo.SpinnerItem">
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textColor">@color/pelis_text</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="TextAppearance.Blabongo.DialogTitle" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/pelis_text</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">@dimen/text_title</item>
+    </style>
+
+    <style name="TextAppearance.Blabongo.DialogBody" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">@color/pelis_text_secondary</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <!-- ══════════════ VISTA DE TEXTO GLOBAL ══════════════
+         android:fontFamily NO se hereda del tema a los TextView: hay que
+         pasarlo por android:textViewStyle (se declara en themes.xml). -->
+    <style name="Widget.Blabongo.TextView" parent="android:Widget.Material.TextView">
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="Widget.Blabongo.EditText" parent="android:Widget.Material.EditText">
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <!-- ══════════════ CABECERAS DE SECCIÓN ══════════════ -->
+
+    <style name="Widget.Blabongo.SectionBar">
+        <item name="android:layout_width">@dimen/stroke_accent</item>
+        <item name="android:layout_height">16dp</item>
+        <item name="android:background">@drawable/bg_section_bar</item>
+    </style>
+
+    <style name="Widget.Blabongo.SectionTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.Blabongo.Section</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Widget.Blabongo.SectionCount">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_pill_meta</item>
+        <item name="android:paddingStart">9dp</item>
+        <item name="android:paddingEnd">9dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Blabongo.Caption</item>
+    </style>
+
+    <!-- ══════════════ CHIPS DE FILTRO ══════════════
+         En web.dramalive.cc lo activo es un RELLENO azul #2196F3 con el rótulo
+         en blanco (medido: el chip seleccionado es 19-58 % azul puro). El texto
+         lo cambia @color/pelis_chip_text en el mismo estado, así que fondo y
+         rótulo no pueden desincronizarse. -->
+
+    <style name="Widget.Blabongo.Chip">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/chip_height</item>
+        <item name="android:minWidth">@dimen/chip_min_width</item>
+        <item name="android:background">@drawable/bg_pelis_filter</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">13dp</item>
+        <item name="android:paddingEnd">13dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:textColor">@color/pelis_chip_text</item>
+        <item name="android:textAppearance">@style/TextAppearance.Blabongo.Chip</item>
+    </style>
+
+    <style name="Widget.Blabongo.Chip.Danger">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:textColor">@color/pelis_chip_text_danger</item>
+    </style>
+
+    <!-- ══════════════ TABS DE TÓPICO (Canales) ══════════════
+         Cuadro de icono con el rótulo DEBAJO, fuera del cuadro, como en las
+         capturas del Drama Live real (`nav-rt.png`: el bloque azul de
+         "Most watched" mide ~67x55 dp y el rótulo queda por debajo, sobre el
+         fondo). El fondo lo lleva la celda entera pero solo el estado selected
+         pinta algo: en reposo no hay cuadro.
+         El estado lo pone el fragmento con setSelected(). -->
+
+    <style name="Widget.Blabongo.Tab">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/canal_tab_h</item>
+        <item name="android:minWidth">72dp</item>
+        <item name="android:layout_marginEnd">@dimen/canal_tab_gap</item>
+        <!-- El bloque azul de la activa va en la CELDA entera, icono + rótulo,
+             como en el Drama Live real instalado en el teléfono (captura
+             drama-01.png: "Most watc" se lee en blanco SOBRE el azul, y los
+             rótulos de las inactivas quedan sobre el fondo). -->
+        <item name="android:background">@drawable/bg_canal_tab</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingStart">6dp</item>
+        <item name="android:paddingEnd">6dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="Widget.Blabongo.TabIcon">
+        <item name="android:layout_width">@dimen/canal_tab_icon</item>
+        <item name="android:layout_height">@dimen/canal_tab_icon</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:contentDescription">@null</item>
+        <item name="android:src">@drawable/ic_topic_grid</item>
+        <item name="android:tint">@color/pelis_tab_icon</item>
+    </style>
+
+    <style name="Widget.Blabongo.TabLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/pelis_tab_text</item>
+        <item name="android:textAppearance">@style/TextAppearance.Blabongo.TabLabel</item>
+    </style>
+
+    <!-- ══════════════ CAMPO DE BÚSQUEDA ══════════════ -->
+
+    <style name="Widget.Blabongo.SearchField">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/search_height</item>
+        <item name="android:background">@drawable/bg_pelis_search</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingStart">@dimen/space_2</item>
+        <item name="android:paddingEnd">@dimen/space_1</item>
+    </style>
+
+    <!-- ══════════════ CABECERA DE UNA SOLA FILA ══════════════
+         En web.dramalive.cc la barra es UNA fila: nombre + buscador + iconos.
+         Antes la app apilaba título, píldora de conteo, insignia EN VIVO y una
+         fila aparte con el buscador a todo lo ancho, y eso se comía ~150 dp de
+         pantalla donde el sitio gasta 56.
+
+         El título va corto y con tope de ancho para que el buscador, que se
+         lleva el peso, no se quede sin sitio en un teléfono. -->
+
+    <style name="Widget.Blabongo.HeaderTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxWidth">110dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textAppearance">@style/TextAppearance.Blabongo.Section</item>
+    </style>
+
+    <style name="Widget.Blabongo.HeaderCount">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">6dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textAppearance">@style/TextAppearance.Blabongo.Caption</item>
+    </style>
+
+    <style name="Widget.Blabongo.SearchInput">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginStart">@dimen/space_1_5</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:textColor">@color/pelis_text</item>
+        <item name="android:textColorHint">@color/pelis_muted</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:textColorHighlight">@color/pelis_accent_soft</item>
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:minHeight">@dimen/touch_min</item>
+    </style>
+
+    <style name="Widget.Blabongo.SearchAction">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:background">@drawable/bg_icon_button</item>
+        <item name="android:padding">9dp</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <!-- Botón de ícono de barra superior (refrescar, buscar, fuente).
+         En el sitio los iconos de la barra son BLANCOS y sin fondo; el círculo
+         solo aparece al pulsar. Antes iban en gris azulado. -->
+    <style name="Widget.Blabongo.IconAction">
+        <item name="android:layout_width">@dimen/touch_min</item>
+        <item name="android:layout_height">@dimen/touch_min</item>
+        <item name="android:background">@drawable/bg_icon_button</item>
+        <item name="android:padding">11dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:tint">@color/pelis_text</item>
+    </style>
+
+    <!-- Campo del diálogo de fuente (URL M3U / código FG) -->
+    <style name="Widget.Blabongo.Field">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_field</item>
+        <item name="android:minHeight">@dimen/field_height</item>
+        <item name="android:paddingStart">@dimen/space_2</item>
+        <item name="android:paddingEnd">@dimen/space_2</item>
+        <item name="android:paddingTop">@dimen/space_1_5</item>
+        <item name="android:paddingBottom">@dimen/space_1_5</item>
+        <item name="android:textColor">@color/pelis_text</item>
+        <item name="android:textColorHint">@color/pelis_muted</item>
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:inputType">textUri</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:textCursorDrawable">@null</item>
+    </style>
+
+    <style name="Widget.Blabongo.FieldLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/space_2</item>
+        <item name="android:layout_marginBottom">@dimen/space_1</item>
+        <item name="android:textAppearance">@style/TextAppearance.Blabongo.Overline</item>
+    </style>
+
+    <!-- ══════════════ CARDS ══════════════ -->
+
+    <style name="Widget.Blabongo.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/pelis_card</item>
+        <item name="cardCornerRadius">@dimen/radius_card</item>
+        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="strokeColor">@color/pelis_border_soft</item>
+        <item name="strokeWidth">@dimen/stroke_hair</item>
+        <item name="android:stateListAnimator">@animator/lift_on_press</item>
+        <item name="rippleColor">@color/pelis_ripple</item>
+    </style>
+
+    <!-- Card plana de póster (sin elevación: el degradado hace el trabajo) -->
+    <style name="Widget.Blabongo.Card.Poster" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/pelis_card</item>
+        <item name="cardCornerRadius">@dimen/radius_poster</item>
+        <item name="cardElevation">@dimen/card_elevation_flat</item>
+        <item name="strokeColor">@color/pelis_border_soft</item>
+        <item name="strokeWidth">@dimen/stroke_hair</item>
+        <item name="rippleColor">@color/pelis_ripple</item>
+        <item name="android:layout_margin">@dimen/card_margin</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:stateListAnimator">@animator/lift_on_press</item>
+    </style>
+
+    <!-- Tile de canal: CUADRADO con el nombre dentro, como en las capturas del
+         Drama Live real. Vidrio translúcido (negro al 44 % sobre el fondo), filete
+         oscuro de 1 dp y estado activated para el canal en curso. -->
+    <style name="Widget.Blabongo.Tile" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/pelis_tile_bg</item>
+        <item name="cardCornerRadius">@dimen/radius_tile</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeColor">@color/pelis_tile_stroke</item>
+        <item name="strokeWidth">@dimen/stroke_ring</item>
+        <item name="rippleColor">@color/pelis_ripple</item>
+        <item name="android:layout_margin">@dimen/canal_tile_gutter</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:stateListAnimator">@animator/lift_on_press</item>
+    </style>
+
+    <!-- Nombre dentro del tile: banda inferior con velo, una línea, blanco. -->
+    <style name="Widget.Blabongo.TileName">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/canal_name_h</item>
+        <item name="android:background">@drawable/bg_tile_name_bar</item>
+        <item name="android:gravity">center_vertical|start</item>
+        <item name="android:paddingStart">@dimen/space_1_5</item>
+        <item name="android:paddingEnd">@dimen/space_1_5</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/pelis_text</item>
+        <item name="android:textSize">@dimen/text_badge</item>
+    </style>
+
+    <style name="Widget.Blabongo.Badge">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_pelis_badge</item>
+        <item name="android:paddingStart">6dp</item>
+        <item name="android:paddingEnd">6dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Blabongo.Badge</item>
+    </style>
+
+    <style name="Widget.Blabongo.PillGlass">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_pill_glass</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- ══════════════ BOTONES ══════════════
+         El CTA va relleno del azul de acento con TEXTO BLANCO. El relleno es
+         #1565C0 (Blue 800) y no #2196F3 porque el blanco sobre #2196F3 solo da
+         3.1:1: eso pasa en un chip (es un control), no en un botón. -->
+
+    <style name="Widget.Blabongo.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingStart">@dimen/space_3</item>
+        <item name="android:paddingEnd">@dimen/space_3</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">@dimen/radius_button</item>
+        <item name="backgroundTint">@color/pelis_button_tint</item>
+        <item name="android:textColor">@color/pelis_button_text</item>
+        <item name="elevation">3dp</item>
+        <item name="rippleColor">@color/pelis_ripple</item>
+    </style>
+
+    <style name="Widget.Blabongo.Button.Play">
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="icon">@drawable/ic_play</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">10dp</item>
+        <item name="iconSize">20dp</item>
+        <item name="iconTint">@color/pelis_ink</item>
+        <item name="android:gravity">center</item>
+        <item name="android:stateListAnimator">@animator/raise_on_press</item>
+    </style>
+
+    <style name="Widget.Blabongo.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textColor">@color/pelis_accent</item>
+        <item name="cornerRadius">@dimen/radius_button</item>
+        <item name="strokeColor">@color/pelis_cyan_ring</item>
+        <item name="rippleColor">@color/pelis_ripple</item>
+    </style>
+
+    <style name="Widget.Blabongo.Button.Text" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textColor">@color/pelis_text_secondary</item>
+        <item name="cornerRadius">@dimen/radius_button</item>
+        <item name="rippleColor">@color/pelis_ripple</item>
+    </style>
+
+    <style name="Widget.Blabongo.DialogButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/pelis_accent</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textStyle">bold</item>
+        <item name="rippleColor">@color/pelis_ripple</item>
+    </style>
+
+    <!-- ══════════════ FILAS DE LISTA ══════════════ -->
+
+    <style name="Widget.Blabongo.Row">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_row</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingStart">@dimen/space_3</item>
+        <item name="android:paddingEnd">@dimen/space_3</item>
+        <item name="android:paddingTop">@dimen/space_2</item>
+        <item name="android:paddingBottom">@dimen/space_2</item>
+        <item name="android:minHeight">54dp</item>
+    </style>
+
+    <!-- ══════════════ REPRODUCTOR ══════════════ -->
+
+    <style name="Widget.Blabongo.PlayerButton">
+        <item name="android:layout_width">@dimen/touch_min</item>
+        <item name="android:layout_height">@dimen/touch_min</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/bg_icon_button</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:tint">@color/pelis_text</item>
+    </style>
+
+    <style name="Widget.Blabongo.PlayerButton.Primary">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginStart">@dimen/space_1</item>
+        <item name="android:layout_marginEnd">@dimen/space_1</item>
+        <item name="android:padding">13dp</item>
+        <item name="android:background">@drawable/bg_player_primary_button</item>
+        <item name="android:tint">@color/pelis_text</item>
+    </style>
+
+    <!-- ══════════════ DRAWER ══════════════ -->
+
+    <style name="TextAppearance.Blabongo.NavItem" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/pelis_nav_item_text</item>
+    </style>
+
+    <style name="ShapeAppearance.Blabongo.NavItem" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <!-- ══════════════ SPINNER ══════════════ -->
+
+    <style name="Widget.Blabongo.Spinner" parent="Widget.AppCompat.Spinner.Underlined">
+        <item name="android:background">@drawable/bg_spinner</item>
+        <item name="android:popupBackground">@color/pelis_card_high</item>
+        <item name="android:dropDownVerticalOffset">4dp</item>
+    </style>
+
+    <style name="Widget.Blabongo.Spinner.Item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">40dp</item>
+        <item name="android:paddingStart">@dimen/space_2</item>
+        <item name="android:paddingEnd">@dimen/space_2</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textAppearance">@style/TextAppearance.Blabongo.SpinnerItem</item>
+    </style>
+
+    <style name="Widget.Blabongo.Spinner.Item.Dropdown" parent="Widget.Blabongo.Spinner.Item">
+        <item name="android:background">@color/pelis_card</item>
+        <item name="android:minHeight">46dp</item>
+        <item name="android:textColor">@color/pelis_text_secondary</item>
+    </style>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Degradado inferior para que el título se lea sobre el póster/backdrop. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient
+        android:angle="90"
+        android:startColor="@color/pelis_scrim_strong"
+        android:centerColor="@color/pelis_scrim_soft"
+        android:endColor="#00001A20" />
+</shape>

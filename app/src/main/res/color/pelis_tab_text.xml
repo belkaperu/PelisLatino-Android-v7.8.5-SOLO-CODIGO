@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Rótulo de la categoría: blanco en los dos estados. En el sitio la categoría
+     activa se distingue por el bloque azul del cuadro, no por el color del
+     texto. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/pelis_text" android:state_selected="true" />
+    <item android:color="@color/pelis_text" android:state_pressed="true" />
+    <item android:color="@color/pelis_text" />
+</selector>

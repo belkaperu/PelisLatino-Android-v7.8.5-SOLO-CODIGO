@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/space_3">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="@dimen/intro_art"
+            android:layout_height="@dimen/intro_art"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_dot_ring" />
+
+        <ImageView
+            android:id="@+id/slideImage"
+            android:layout_width="@dimen/intro_art"
+            android:layout_height="@dimen/intro_art"
+            android:contentDescription="@null"
+            android:padding="@dimen/space_5"
+            android:scaleType="fitCenter"
+            app:tint="@color/pelis_accent" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/slideTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_4"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.Blabongo.Title"
+        android:textSize="@dimen/text_display"
+        tools:text="Películas y series" />
+
+    <TextView
+        android:id="@+id/slideDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_2"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:textAppearance="@style/TextAppearance.Blabongo.Body"
+        android:textSize="@dimen/text_subtitle"
+        tools:text="Todo tu catálogo en un solo lugar, sin salir de la app." />
+
+</LinearLayout>

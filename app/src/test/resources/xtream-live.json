@@ -1,0 +1,6 @@
+[
+ {"num":"1","name":"ESPN HD (720p)","stream_type":"mpegts","stream_id":"1234","category_id":"5","epg_channel_id":"espn.us","stream_icon":"http://panel.test/icons/espn.png","tv_archive":"0"},
+ {"num":"2","name":"Gol Peru","stream_type":"mpegts","stream_id":"99","category_id":"5","stream_icon":"","custom_stream_icon":""},
+ {"num":"3","name":"Estreno de cine","stream_type":"movie","stream_id":"777","category_id":"9"},
+ {"num":"4","name":"Series [FHD]","stream_type":"mpegts","stream_id":"88","category_id":"12","custom_stream_icon":"http://panel.test/i/88.png"}
+]

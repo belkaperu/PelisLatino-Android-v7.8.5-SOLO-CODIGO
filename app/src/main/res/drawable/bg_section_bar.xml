@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Barrita de acento de las cabeceras de sección. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient
+        android:angle="270"
+        android:startColor="@color/pelis_accent"
+        android:endColor="@color/pelis_primary_dark" />
+    <corners android:radius="2dp" />
+</shape>

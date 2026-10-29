@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Blabongo.Row"
+    android:layout_marginStart="@dimen/space_1_5"
+    android:layout_marginTop="@dimen/space_1"
+    android:layout_marginEnd="@dimen/space_1_5"
+    android:background="@drawable/bg_row_feedback"
+    android:paddingTop="@dimen/space_1_5"
+    android:paddingBottom="@dimen/space_1_5">
+
+    <ImageView
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:background="@drawable/bg_circle_logo"
+        android:contentDescription="@string/pelis_reproducir"
+        android:padding="8dp"
+        android:src="@drawable/ic_play_option"
+        app:tint="@color/pelis_accent" />
+
+    <TextView
+        android:id="@+id/textOpcionLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_2"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="2"
+        android:textColor="@color/pelis_text"
+        android:textSize="@dimen/text_body"
+        tools:text="Opción 1" />
+
+    <ImageView
+        android:layout_width="@dimen/icon_sm"
+        android:layout_height="@dimen/icon_sm"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_chevron_right"
+        app:tint="@color/pelis_text_disabled" />
+</LinearLayout>
